@@ -19,6 +19,13 @@ namespace WindowsFormsApplication1.Pustaka
             { "kayyali", new double[3, 3] {{6, 0, -6}, {0, 0, 0}, {-6, 0, 6}}}
         };
 
+        private static Dictionary<String, double[,]> mat2degree = new Dictionary<String, double[,]>()
+        {
+            { "prewitt", new double[3, 3] {{-1, 0, 1}, {-1, 0, 1}, {-1, 0, 1}}},
+            { "robinson", new double[3, 3] {{-1, 0, 1}, {-2, 0, 2}, {-1, 0, 1}}},
+            { "kirsch", new double[3, 3] {{-3, -3, 5}, {-3, 0, 5}, {-3, -3, 5}}}
+        };
+
         public static Bitmap copy(Bitmap _b) {
             Bitmap temp = new Bitmap(_b);
             return temp;
@@ -296,13 +303,27 @@ namespace WindowsFormsApplication1.Pustaka
                     output.SetPixel(i - 1, j - 1, Color.FromArgb(jarak, jarak, jarak));
                 }
             }
-
             return output;
         }
 
         private static int distance(double a, double b)
         {
             return (int)Math.Pow(Math.Pow(a, 2) + Math.Pow(b, 2), 0.5);
+        }
+
+        private static double[,] rotateMatrix(double[,] _mat) // putar matrix 45 drj, 8x jadi kembali ke asal, untuk derajat 2
+        {
+            double[,] res = (double[,])_mat.Clone();
+            double temp = res[0, 0];
+            res[0, 0] = res[0, 1];
+            res[0, 1] = res[0, 2];
+            res[0, 2] = res[1, 2];
+            res[1, 2] = res[2, 2];
+            res[2, 2] = res[2, 1];
+            res[2, 1] = res[2, 0];
+            res[2, 0] = res[1, 0];
+            res[1, 0] = temp;
+            return res;
         }
     }
 }
