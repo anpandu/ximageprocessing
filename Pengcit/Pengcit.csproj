@@ -78,6 +78,12 @@
       <DependentUpon>Form_Old.cs</DependentUpon>
     </Compile>
     <Compile Include="Pustaka\XRecognizer.cs" />
+    <Compile Include="Window\Form_chaincode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Window\Form_chaincode.Designer.cs">
+      <DependentUpon>Form_chaincode.cs</DependentUpon>
+    </Compile>
     <Compile Include="Window\Form_histogram.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -100,6 +106,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form_Old.resx">
       <DependentUpon>Form_Old.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Window\Form_chaincode.resx">
+      <DependentUpon>Form_chaincode.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Window\Form_histogram.resx">
       <DependentUpon>Form_histogram.cs</DependentUpon>

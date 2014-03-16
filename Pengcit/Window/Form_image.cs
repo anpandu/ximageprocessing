@@ -124,12 +124,15 @@ namespace WindowsFormsApplication1.Window
             XRecognizer r = new XRecognizer(Color.FromArgb(0,0,0), image);
             r.proses();
             image = r.gambaredited;
-            String message = "Tugas 4 Pengolahan Citra\n";
-            message += ("jumlah bangun = "+r.codes.Count+"\n");
+            String message = "";
+            message += ("Jumlah Bangun = "+r.codes.Count+"\n\n");
             foreach (String code in r.codes) {
-                message += ("Stringcode "+r.codes.IndexOf(code)+" = "+code+"\n");
+                message += ("Chaincode #"+r.codes.IndexOf(code)+" = "+code+"\n\n");
             }
             imageBox.Image = image;
+            Form_chaincode fcc = new Form_chaincode("Chaincode " + this.filename, message);
+            fcc.MdiParent = this.MdiParent;
+            fcc.Show();
         }
 
         private void prewittToolStripMenuItem1_Click(object sender, EventArgs e)
