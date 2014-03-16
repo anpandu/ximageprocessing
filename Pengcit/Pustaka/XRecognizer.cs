@@ -14,21 +14,25 @@ namespace WindowsFormsApplication1.Pustaka
         public Bitmap gambar_ori;
         public Bitmap gambar;
         public Bitmap gambaredited;
+
         public List<string> codes;
+        public List<string> codes_delta;
+        public List<double[]> freqs_code_delta;
+
         int[] arahx;
         int[] arahy;
-        //int tolerance; // toleransi kesamaan warna thd latar
         
         public XRecognizer (Color _latar, Bitmap _gambar) {
             background = _latar;
             codes = new List<string>();
+            codes_delta = new List<string>();
+            freqs_code_delta = new List<double[]>();
             mark = Color.FromArgb(255, 0, 0);
             gambar_ori = new Bitmap(_gambar);
             gambar = XImage.addFrame(_gambar, background);
             gambaredited = new Bitmap(_gambar);
             arahx = new int[8] { 0, 1, 1, 1, 0, -1, -1, -1 };
             arahy = new int[8] { -1, -1, 0, 1, 1, 1, 0, -1 };
-            //tolerance = 1;
         }
 
         private bool isBackground(Color _c) {
@@ -40,14 +44,45 @@ namespace WindowsFormsApplication1.Pustaka
             for (int i = 1; i < gambar.Width-1; i++) {              // iterasi
                 for (int j = 1; j < gambar.Height-1; j++) {
                     Color ctemp = gambar.GetPixel(i, j);
-                    if (!isBackground(ctemp)) {                          // jika tidak sama dgn latar
+                    if (!isBackground(ctemp)) {                     // jika tidak sama dgn latar
                         String codetemp = tanganKiriBasah(i, j);    // dapatkan chaincode + kasih tanda merah pada edge
                         codes.Add(codetemp);                        // add ke list
                         floodDelete(i, j);                          // hapus bangun
                     }
                 }
-            }/**/
-            //floodDelete(116, 99);
+            }
+            // stringcode delta
+            foreach (String code in codes) {
+                char[] char_arr = (char[])code.ToCharArray().Clone();
+                String code_delta = "";
+                for (int i = 0; i < char_arr.Length; i++) {
+                    int cc_curr = int.Parse(char_arr[i].ToString());
+                    int cc_next = int.Parse(char_arr[(i+1)%char_arr.Length].ToString());
+                    int delta = (cc_next - cc_curr);
+                    delta = delta >= 0 ? delta : delta+8;
+                    //delta = delta < 4 ? delta : 8 - delta;
+                    code_delta += delta.ToString();
+                }
+                codes_delta.Add(code_delta);
+            }
+            // frequency of code in stringcode delta
+            foreach (String code_delta in codes_delta) {
+                double[] freq_code_delta = new double[8];
+                int total = 0;
+                for (int i = 0; i < 8; i++) {
+                    freq_code_delta[i] = 0;
+                }
+                char[] char_arr = (char[])code_delta.ToCharArray().Clone();
+                for (int i = 0; i < char_arr.Length; i++) {
+                    int cc_curr = int.Parse(char_arr[i].ToString());
+                    freq_code_delta[cc_curr] += 1;
+                    total += 1;
+                }
+                for (int i = 0; i < 8; i++) {
+                    freq_code_delta[i] /= total;
+                }
+                freqs_code_delta.Add(freq_code_delta);/**/
+            }
         }
 
         private void marking (int _x, int _y) { 

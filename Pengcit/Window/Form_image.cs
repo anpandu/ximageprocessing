@@ -121,6 +121,10 @@ namespace WindowsFormsApplication1.Window
 
         private void chainCodeToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            System.Globalization.CultureInfo customCulture = (System.Globalization.CultureInfo)System.Threading.Thread.CurrentThread.CurrentCulture.Clone();
+            customCulture.NumberFormat.NumberDecimalSeparator = ".";
+            System.Threading.Thread.CurrentThread.CurrentCulture = customCulture;
+
             XRecognizer r = new XRecognizer(Color.FromArgb(0,0,0), image);
             r.proses();
             image = r.gambaredited;
@@ -128,6 +132,22 @@ namespace WindowsFormsApplication1.Window
             message += ("Jumlah Bangun = "+r.codes.Count+"\n\n");
             foreach (String code in r.codes) {
                 message += ("Chaincode #"+r.codes.IndexOf(code)+" = "+code+"\n\n");
+            }
+            foreach (String code in r.codes_delta) {
+                message += ("Chaincode_delta #" + r.codes_delta.IndexOf(code) + " = " + code + "\n\n");
+            }
+            foreach (double[] freq in r.freqs_code_delta) {
+                message += ("Chaincode_delta #" + r.freqs_code_delta.IndexOf(freq) + " = \n\n");
+                for (int i=0; i<freq.Length; i++)
+                    message += ("" + i + " = " + freq[i] + "\n");
+                message += "\n";
+            }
+            message += "\n";
+            message += "\n";
+            foreach (double[] freq in r.freqs_code_delta) {
+                for (int i=0; i<freq.Length; i++)
+                    message += ("" + freq[i].ToString() + ",");
+                message += r.freqs_code_delta.IndexOf(freq) + "\n";
             }
             imageBox.Image = image;
             Form_chaincode fcc = new Form_chaincode("Chaincode " + this.filename, message);

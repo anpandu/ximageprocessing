@@ -35,7 +35,7 @@
             // 
             this.cc_textbox.Location = new System.Drawing.Point(12, 12);
             this.cc_textbox.Name = "cc_textbox";
-            this.cc_textbox.Size = new System.Drawing.Size(490, 251);
+            this.cc_textbox.Size = new System.Drawing.Size(490, 351);
             this.cc_textbox.TabIndex = 0;
             this.cc_textbox.Text = "";
             // 
@@ -43,7 +43,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(514, 275);
+            this.ClientSize = new System.Drawing.Size(514, 375);
             this.Controls.Add(this.cc_textbox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Form_chaincode";
