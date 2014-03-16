@@ -78,35 +78,35 @@ namespace WindowsFormsApplication1.Window
         private void prewittToolStripMenuItem_Click(object sender, EventArgs e)
         {
             image = XImage.toGrayscale(image);
-            image = XImage.processOneDegree(image, 0);
+            image = XImage.processDegreeOne(image, 0);
             imageBox.Image = image;
         }
 
         private void sobelToolStripMenuItem_Click(object sender, EventArgs e)
         {
             image = XImage.toGrayscale(image);
-            image = XImage.processOneDegree(image, 1);
+            image = XImage.processDegreeOne(image, 1);
             imageBox.Image = image;
         }
 
         private void freiChenToolStripMenuItem_Click(object sender, EventArgs e)
         {
             image = XImage.toGrayscale(image);
-            image = XImage.processOneDegree(image, 2);
+            image = XImage.processDegreeOne(image, 2);
             imageBox.Image = image;
         }
 
         private void robertToolStripMenuItem_Click(object sender, EventArgs e)
         {
             image = XImage.toGrayscale(image);
-            image = XImage.processOneDegree(image, 3);
+            image = XImage.processDegreeOne(image, 3);
             imageBox.Image = image;
         }
 
         private void kayyaliToolStripMenuItem_Click(object sender, EventArgs e)
         {
             image = XImage.toGrayscale(image);
-            image = XImage.processOneDegree(image, 4);
+            image = XImage.processDegreeOne(image, 4);
             imageBox.Image = image;
         }
 
@@ -129,6 +129,27 @@ namespace WindowsFormsApplication1.Window
             foreach (String code in r.codes) {
                 message += ("Stringcode "+r.codes.IndexOf(code)+" = "+code+"\n");
             }
+            imageBox.Image = image;
+        }
+
+        private void prewittToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            image = XImage.toGrayscale(image);
+            image = XImage.processDegreeTwo(image, 0);
+            imageBox.Image = image;
+        }
+
+        private void robinsonToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            image = XImage.toGrayscale(image);
+            image = XImage.processDegreeTwo(image, 1);
+            imageBox.Image = image;
+        }
+
+        private void kirschToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            image = XImage.toGrayscale(image);
+            image = XImage.processDegreeTwo(image, 2);
             imageBox.Image = image;
         }
     }

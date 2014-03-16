@@ -45,13 +45,16 @@
             this.prewittToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sobelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.freiChenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.robertToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.kayyaliToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.convMatrix2ndDegreeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.chainCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.histogramToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showHistogramToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imageBox = new System.Windows.Forms.PictureBox();
-            this.robertToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.kayyaliToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.prewittToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.robinsonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.kirschToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageBox)).BeginInit();
             this.SuspendLayout();
@@ -178,26 +181,44 @@
             // prewittToolStripMenuItem
             // 
             this.prewittToolStripMenuItem.Name = "prewittToolStripMenuItem";
-            this.prewittToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.prewittToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.prewittToolStripMenuItem.Text = "Prewitt";
             this.prewittToolStripMenuItem.Click += new System.EventHandler(this.prewittToolStripMenuItem_Click);
             // 
             // sobelToolStripMenuItem
             // 
             this.sobelToolStripMenuItem.Name = "sobelToolStripMenuItem";
-            this.sobelToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.sobelToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.sobelToolStripMenuItem.Text = "Sobel";
             this.sobelToolStripMenuItem.Click += new System.EventHandler(this.sobelToolStripMenuItem_Click);
             // 
             // freiChenToolStripMenuItem
             // 
             this.freiChenToolStripMenuItem.Name = "freiChenToolStripMenuItem";
-            this.freiChenToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.freiChenToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.freiChenToolStripMenuItem.Text = "Frei Chen";
             this.freiChenToolStripMenuItem.Click += new System.EventHandler(this.freiChenToolStripMenuItem_Click);
             // 
+            // robertToolStripMenuItem
+            // 
+            this.robertToolStripMenuItem.Name = "robertToolStripMenuItem";
+            this.robertToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+            this.robertToolStripMenuItem.Text = "Robert";
+            this.robertToolStripMenuItem.Click += new System.EventHandler(this.robertToolStripMenuItem_Click);
+            // 
+            // kayyaliToolStripMenuItem
+            // 
+            this.kayyaliToolStripMenuItem.Name = "kayyaliToolStripMenuItem";
+            this.kayyaliToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+            this.kayyaliToolStripMenuItem.Text = "Kayyali";
+            this.kayyaliToolStripMenuItem.Click += new System.EventHandler(this.kayyaliToolStripMenuItem_Click);
+            // 
             // convMatrix2ndDegreeToolStripMenuItem
             // 
+            this.convMatrix2ndDegreeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.prewittToolStripMenuItem1,
+            this.robinsonToolStripMenuItem,
+            this.kirschToolStripMenuItem});
             this.convMatrix2ndDegreeToolStripMenuItem.Name = "convMatrix2ndDegreeToolStripMenuItem";
             this.convMatrix2ndDegreeToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
             this.convMatrix2ndDegreeToolStripMenuItem.Text = "Conv. Matrix 2nd Degree";
@@ -226,26 +247,33 @@
             // 
             // imageBox
             // 
-            this.imageBox.Location = new System.Drawing.Point(0, 2);
+            this.imageBox.Location = new System.Drawing.Point(0, 3);
             this.imageBox.Name = "imageBox";
             this.imageBox.Size = new System.Drawing.Size(500, 500);
             this.imageBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.imageBox.TabIndex = 1;
             this.imageBox.TabStop = false;
             // 
-            // robertToolStripMenuItem
+            // prewittToolStripMenuItem1
             // 
-            this.robertToolStripMenuItem.Name = "robertToolStripMenuItem";
-            this.robertToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.robertToolStripMenuItem.Text = "Robert";
-            this.robertToolStripMenuItem.Click += new System.EventHandler(this.robertToolStripMenuItem_Click);
+            this.prewittToolStripMenuItem1.Name = "prewittToolStripMenuItem1";
+            this.prewittToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.prewittToolStripMenuItem1.Text = "Prewitt";
+            this.prewittToolStripMenuItem1.Click += new System.EventHandler(this.prewittToolStripMenuItem1_Click);
             // 
-            // kayyaliToolStripMenuItem
+            // robinsonToolStripMenuItem
             // 
-            this.kayyaliToolStripMenuItem.Name = "kayyaliToolStripMenuItem";
-            this.kayyaliToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.kayyaliToolStripMenuItem.Text = "Kayyali";
-            this.kayyaliToolStripMenuItem.Click += new System.EventHandler(this.kayyaliToolStripMenuItem_Click);
+            this.robinsonToolStripMenuItem.Name = "robinsonToolStripMenuItem";
+            this.robinsonToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.robinsonToolStripMenuItem.Text = "Robinson";
+            this.robinsonToolStripMenuItem.Click += new System.EventHandler(this.robinsonToolStripMenuItem_Click);
+            // 
+            // kirschToolStripMenuItem
+            // 
+            this.kirschToolStripMenuItem.Name = "kirschToolStripMenuItem";
+            this.kirschToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.kirschToolStripMenuItem.Text = "Kirsch";
+            this.kirschToolStripMenuItem.Click += new System.EventHandler(this.kirschToolStripMenuItem_Click);
             // 
             // Form_image
             // 
@@ -293,6 +321,9 @@
         private System.Windows.Forms.ToolStripMenuItem resetImageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem robertToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem kayyaliToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem prewittToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem robinsonToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem kirschToolStripMenuItem;
 
     }
 }

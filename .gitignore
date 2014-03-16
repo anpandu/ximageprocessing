@@ -1,2 +1,4 @@
 *.exe
 *.pdb
+Pengcit/bin/*
+Pengcit/obj/*

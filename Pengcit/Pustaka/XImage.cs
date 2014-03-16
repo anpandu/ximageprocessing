@@ -247,30 +247,31 @@ namespace WindowsFormsApplication1.Pustaka
             return temp;
         }
 
-        public static Bitmap processOneDegree(Bitmap _b, int _mode)
+        public static Bitmap processDegreeOne(Bitmap _b, int _mode)
         {
             Bitmap temp = addMirroredFrame(_b);
             Bitmap output = new Bitmap(_b.Width, _b.Height);
 
             double[,] convmatrix;
-            switch (_mode) {
+            switch (_mode)
+            {
                 case 0:
-                    convmatrix = mat1degree["prewitt"];
+                    convmatrix = (double[,])mat1degree["prewitt"].Clone();
                     break;
                 case 1:
-                    convmatrix = mat1degree["sobel"];
+                    convmatrix = (double[,])mat1degree["sobel"].Clone();
                     break;
                 case 2:
-                    convmatrix = mat1degree["freichen"];
+                    convmatrix = (double[,])mat1degree["freichen"].Clone();
                     break;
                 case 3:
-                    convmatrix = mat1degree["robert"];
+                    convmatrix = (double[,])mat1degree["robert"].Clone();
                     break;
                 case 4:
-                    convmatrix = mat1degree["kayyali"];
+                    convmatrix = (double[,])mat1degree["kayyali"].Clone();
                     break;
                 default:
-                    convmatrix = mat1degree["prewitt"];
+                    convmatrix = (double[,])mat1degree["prewitt"].Clone();
                     break;
             }
 
@@ -278,27 +279,12 @@ namespace WindowsFormsApplication1.Pustaka
             {              // iterasi
                 for (int j = 1; j < temp.Height - 1; j++)
                 {
-                    double vertical = (double)temp.GetPixel(i - 1, j - 1).R * convmatrix[0, 0] +
-                        (double)temp.GetPixel(i - 1, j).R * convmatrix[0, 1] +
-                        (double)temp.GetPixel(i - 1, j + 1).R * convmatrix[0, 2] +
-                        (double)temp.GetPixel(i, j - 1).R * convmatrix[1, 0] +
-                        (double)temp.GetPixel(i, j).R * convmatrix[1, 1] +
-                        (double)temp.GetPixel(i, j + 1).R * convmatrix[1, 2] +
-                        (double)temp.GetPixel(i + 1, j - 1).R * convmatrix[2, 0] +
-                        (double)temp.GetPixel(i + 1, j).R * convmatrix[2, 1] +
-                        (double)temp.GetPixel(i + 1, j + 1).R * convmatrix[2, 2];
+                    double N = XImage.dotProduct(temp, convmatrix, i, j); // North
+                    convmatrix = (double[,])rotateMatrix(rotateMatrix(convmatrix)).Clone();
+                    double E = XImage.dotProduct(temp, convmatrix, i, j); // East, rotated twice (90 degree);
 
-                    double horizontal = (double)temp.GetPixel(i - 1, j - 1).R * convmatrix[0, 2] +
-                        (double)temp.GetPixel(i - 1, j).R * convmatrix[1, 2] +
-                        (double)temp.GetPixel(i - 1, j + 1).R * convmatrix[2, 2] +
-                        (double)temp.GetPixel(i, j - 1).R * convmatrix[0, 1] +
-                        (double)temp.GetPixel(i, j).R * convmatrix[1, 1] +
-                        (double)temp.GetPixel(i, j + 1).R * convmatrix[2, 1] +
-                        (double)temp.GetPixel(i + 1, j - 1).R * convmatrix[0, 0] +
-                        (double)temp.GetPixel(i + 1, j).R * convmatrix[1, 0] +
-                        (double)temp.GetPixel(i + 1, j + 1).R * convmatrix[2, 0];
-
-                    int jarak = distance(vertical, horizontal) > 255 ? 255 : distance(vertical, horizontal);
+                    int dis = (int)distance(N, E);
+                    int jarak = dis > 255 ? 255 : dis;
 
                     output.SetPixel(i - 1, j - 1, Color.FromArgb(jarak, jarak, jarak));
                 }
@@ -306,9 +292,59 @@ namespace WindowsFormsApplication1.Pustaka
             return output;
         }
 
-        private static int distance(double a, double b)
+        public static Bitmap processDegreeTwo(Bitmap _b, int _mode)
         {
-            return (int)Math.Pow(Math.Pow(a, 2) + Math.Pow(b, 2), 0.5);
+            Bitmap temp = addMirroredFrame(_b);
+            Bitmap output = new Bitmap(_b.Width, _b.Height);
+
+            double[,] convmatrix;
+            switch (_mode) {
+                case 0:
+                    convmatrix = (double[,])mat2degree["prewitt"].Clone();
+                    break;
+                case 1:
+                    convmatrix = (double[,])mat2degree["robinson"].Clone();
+                    break;
+                case 2:
+                    convmatrix = (double[,])mat2degree["kirsch"].Clone();
+                    break;
+                default:
+                    convmatrix = (double[,])mat2degree["prewitt"].Clone();
+                    break;
+            }
+
+            for (int i = 1; i < temp.Width - 1; i++)
+            {              // iterasi
+                for (int j = 1; j < temp.Height - 1; j++)
+                {
+                    double N = XImage.dotProduct(temp, convmatrix, i, j);       // North
+                    convmatrix = (double[,])rotateMatrix(convmatrix).Clone();
+                    double NE = XImage.dotProduct(temp, convmatrix, i, j);      // North-East
+                    convmatrix = (double[,])rotateMatrix(convmatrix).Clone();
+                    double E = XImage.dotProduct(temp, convmatrix, i, j);       // East
+                    convmatrix = (double[,])rotateMatrix(convmatrix).Clone();
+                    double SE = XImage.dotProduct(temp, convmatrix, i, j);      // South-East
+                    convmatrix = (double[,])rotateMatrix(convmatrix).Clone();
+                    double S = XImage.dotProduct(temp, convmatrix, i, j);       // South
+                    convmatrix = (double[,])rotateMatrix(convmatrix).Clone();
+                    double SW = XImage.dotProduct(temp, convmatrix, i, j);      // South-West
+                    convmatrix = (double[,])rotateMatrix(convmatrix).Clone();
+                    double W = XImage.dotProduct(temp, convmatrix, i, j);       // West
+                    convmatrix = (double[,])rotateMatrix(convmatrix).Clone();
+                    double NW = XImage.dotProduct(temp, convmatrix, i, j);      // North-West
+
+                    int dis = (int)distance(N, distance(NE, distance(E, distance(SE, distance(S, distance(SW, distance(W, NW)))))));
+                    int jarak = dis > 255 ? 255 : dis;
+
+                    output.SetPixel(i - 1, j - 1, Color.FromArgb(jarak, jarak, jarak));
+                }
+            }
+            return output;
+        }
+
+        private static double distance(double a, double b)
+        {
+            return Math.Pow(Math.Pow(a, 2) + Math.Pow(b, 2), 0.5);
         }
 
         private static double[,] rotateMatrix(double[,] _mat) // putar matrix 45 drj, 8x jadi kembali ke asal, untuk derajat 2
@@ -323,6 +359,20 @@ namespace WindowsFormsApplication1.Pustaka
             res[2, 1] = res[2, 0];
             res[2, 0] = res[1, 0];
             res[1, 0] = temp;
+            return res;
+        }
+
+        private static double dotProduct(Bitmap _bmp, double[,] _convmatrix, int i, int j) // putar matrix 45 drj, 8x jadi kembali ke asal, untuk derajat 2
+        {
+            double res = (double)_bmp.GetPixel(i - 1, j - 1).R * _convmatrix[0, 0] +
+                        (double)_bmp.GetPixel(i - 1, j).R * _convmatrix[0, 1] +
+                        (double)_bmp.GetPixel(i - 1, j + 1).R * _convmatrix[0, 2] +
+                        (double)_bmp.GetPixel(i, j - 1).R * _convmatrix[1, 0] +
+                        (double)_bmp.GetPixel(i, j).R * _convmatrix[1, 1] +
+                        (double)_bmp.GetPixel(i, j + 1).R * _convmatrix[1, 2] +
+                        (double)_bmp.GetPixel(i + 1, j - 1).R * _convmatrix[2, 0] +
+                        (double)_bmp.GetPixel(i + 1, j).R * _convmatrix[2, 1] +
+                        (double)_bmp.GetPixel(i + 1, j + 1).R * _convmatrix[2, 2];
             return res;
         }
     }

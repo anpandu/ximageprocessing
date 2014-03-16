@@ -60,23 +60,23 @@ namespace WindowsFormsApplication1 {
                     add_log_text("Tugas 5b - Difference 2");
                 } else if (_opt.Equals("Tugas 6a - Convolution Matrix (Prewitt)")) {
                     _g = XImage.toGrayscale(_g);
-                    _g = XImage.processOneDegree(_g, 0);
+                    _g = XImage.processDegreeOne(_g, 0);
                     add_log_text("Tugas 6a - Convolution Matrix (Prewitt)");
                 } else if (_opt.Equals("Tugas 6b - Convolution Matrix (Sobel)")) {
                     _g = XImage.toGrayscale(_g);
-                    _g = XImage.processOneDegree(_g, 1);
+                    _g = XImage.processDegreeOne(_g, 1);
                     add_log_text("Tugas 6b - Convolution Matrix (Sobel)");
                 } else if (_opt.Equals("Tugas 6c - Convolution Matrix (FreiChen)")) {
                     _g = XImage.toGrayscale(_g);
-                    _g = XImage.processOneDegree(_g, 2);
+                    _g = XImage.processDegreeOne(_g, 2);
                     add_log_text("Tugas 6c - Convolution Matrix (FreiChen)");
                 } else if (_opt.Equals("Tugas 6d - Convolution Matrix (Robert)")) {
                     _g = XImage.toGrayscale(_g);
-                    _g = XImage.processOneDegree(_g, 3);
+                    _g = XImage.processDegreeOne(_g, 3);
                     add_log_text("Tugas 6d - Convolution Matrix (Robert)");
                 } else if (_opt.Equals("Tugas 6e - Convolution Matrix (Kayyali)")) {
                     _g = XImage.toGrayscale(_g);
-                    _g = XImage.processOneDegree(_g, 4);
+                    _g = XImage.processDegreeOne(_g, 4);
                     add_log_text("Tugas 6e - Convolution Matrix (Kayyali)");
                 } else if (_opt.Equals("Clear")) {
                     _g = XImage.copy(gambar_ori);
