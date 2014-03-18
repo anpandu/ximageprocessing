@@ -31,11 +31,11 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openImageDialog = new System.Windows.Forms.OpenFileDialog();
             this.windowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.minimizeAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.restoreAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closeAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openImageDialog = new System.Windows.Forms.OpenFileDialog();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -65,10 +65,6 @@
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
-            // openImageDialog
-            // 
-            this.openImageDialog.FileName = "image.jpg";
-            // 
             // windowToolStripMenuItem
             // 
             this.windowToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -82,23 +78,27 @@
             // minimizeAllToolStripMenuItem
             // 
             this.minimizeAllToolStripMenuItem.Name = "minimizeAllToolStripMenuItem";
-            this.minimizeAllToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.minimizeAllToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.minimizeAllToolStripMenuItem.Text = "Minimize all";
             this.minimizeAllToolStripMenuItem.Click += new System.EventHandler(this.minimizeAllToolStripMenuItem_Click);
             // 
             // restoreAllToolStripMenuItem
             // 
             this.restoreAllToolStripMenuItem.Name = "restoreAllToolStripMenuItem";
-            this.restoreAllToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.restoreAllToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.restoreAllToolStripMenuItem.Text = "Restore all";
             this.restoreAllToolStripMenuItem.Click += new System.EventHandler(this.restoreAllToolStripMenuItem_Click);
             // 
             // closeAllToolStripMenuItem
             // 
             this.closeAllToolStripMenuItem.Name = "closeAllToolStripMenuItem";
-            this.closeAllToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.closeAllToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.closeAllToolStripMenuItem.Text = "Close all";
             this.closeAllToolStripMenuItem.Click += new System.EventHandler(this.closeAllToolStripMenuItem_Click);
+            // 
+            // openImageDialog
+            // 
+            this.openImageDialog.FileName = "image.jpg";
             // 
             // Form_New
             // 
@@ -108,7 +108,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form_New";
-            this.Text = "Form_New";
+            this.Text = "XImageProcessing - Ananta Pandu (13510077)";
             this.Load += new System.EventHandler(this.Form_New_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

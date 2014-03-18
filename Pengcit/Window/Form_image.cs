@@ -31,6 +31,19 @@ namespace WindowsFormsApplication1.Window
             this.Height = imageBox.Height + 28;
         }
 
+        public Form_image(string _filepath, Bitmap _image)
+        {
+            InitializeComponent();
+            filepath = _filepath;
+            filename = Path.GetFileNameWithoutExtension(filepath);
+            image_ori = XImage.copy(_image);
+            image = XImage.copy(_image);
+            imageBox.Image = image;
+            this.Text = filename;
+            this.Width = imageBox.Width + 6;
+            this.Height = imageBox.Height + 28;
+        }
+
         private void grayscaleToolStripMenuItem_Click(object sender, EventArgs e)
         {
             image = XImage.toGrayscale(image);
@@ -126,7 +139,7 @@ namespace WindowsFormsApplication1.Window
             System.Threading.Thread.CurrentThread.CurrentCulture = customCulture;
 
             XRecognizer r = new XRecognizer(Color.FromArgb(0,0,0), image);
-            r.proses();
+            r.classify();
             image = r.gambaredited;
 
             String message = "";
@@ -156,8 +169,11 @@ namespace WindowsFormsApplication1.Window
                 message += r.freqs_code_delta.IndexOf(freq) + "\n";
             }
             /**/
+            //imageBox.Image = image;
 
-            imageBox.Image = image;
+            Form_image fimage = new Form_image(this.filepath, image);
+            fimage.MdiParent = this.MdiParent;
+            fimage.Show();
             Form_chaincode fcc = new Form_chaincode("Chaincode " + this.filename, message);
             fcc.MdiParent = this.MdiParent;
             fcc.Show();

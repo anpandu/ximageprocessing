@@ -62,13 +62,17 @@ namespace WindowsFormsApplication1.Pustaka
             bool hasil = ((_c.R==background.R)&&(_c.G==background.G)&&(_c.B==background.B));
             return hasil;
         }
+        
+        public void classify() {
+            this.calculateChainCode();
+            this.classifyAsNumber();
+        }
 
-        public void proses () {
+        private void calculateChainCode () {
 
             codes = new List<string>();
             codes_delta = new List<string>();
             freqs_code_delta = new List<double[]>();
-            labels_classified = new List<string>();
 
             for (int i = 1; i < gambar.Width-1; i++) {              // iterasi
                 for (int j = 1; j < gambar.Height-1; j++) {
@@ -112,7 +116,11 @@ namespace WindowsFormsApplication1.Pustaka
                 }
                 freqs_code_delta.Add(freq_code_delta);/**/
             }
+        }
+
+        private void classifyAsNumber() {
             // classify
+            labels_classified = new List<string>();
             foreach (double[] freq_code_delta in freqs_code_delta) {
                 Dictionary<double, string> DiffLabelPair = new Dictionary<double, string>();
                 double smallest_diff = 100;
