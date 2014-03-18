@@ -31,6 +31,16 @@ namespace WindowsFormsApplication1.Pustaka
             return temp;
         }
         
+        public static Bitmap getPlainImage(Bitmap _b, Color _c) {
+            Bitmap plainImage = new Bitmap(_b.Width, _b.Height);
+            for (int i = 0; i < _b.Width; i++) {
+                for (int j = 0; j < _b.Height; j++) {
+                    plainImage.SetPixel(i, j, Color.FromArgb(_c.R, _c.G, _c.B));
+                }
+            }
+            return plainImage;
+        }
+
         public static Bitmap addFrame(Bitmap _b, Color _f) {
             Bitmap framedImage = new Bitmap(_b.Width+2, _b.Height+2);
             for (int i = 0; i < framedImage.Width; i++) {

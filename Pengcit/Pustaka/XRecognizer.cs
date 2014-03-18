@@ -93,7 +93,8 @@ namespace WindowsFormsApplication1.Pustaka
 
         private void calculateChainCode () {
             gambar = XImage.addFrame(gambar_ori, background);
-            gambaredited = new Bitmap(gambar_ori);
+            //gambaredited = new Bitmap(gambar_ori);
+            gambaredited = XImage.getPlainImage(gambar_ori, Color.FromArgb(0,0,0));
             codes = new List<string>();
             for (int i = 1; i < gambar.Width-1; i++) {              // iterasi
                 for (int j = 1; j < gambar.Height-1; j++) {
