@@ -32,13 +32,9 @@ namespace WindowsFormsApplication1
                 Form_image fimage = new Form_image(openImageDialog.FileName);
                 fimage.MdiParent = this;
                 fimage.Show();
-
-                //gambar_ori = new Bitmap(openImageDialog.FileName);
-                //add_log_text("Load file : " + tb_input_file.Text);
             }
             catch (Exception) {
                 MessageBox.Show("Canceled or Failed loading image");
-                //throw new ApplicationException("Failed loading image");
             }
         }
 

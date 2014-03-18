@@ -128,27 +128,35 @@ namespace WindowsFormsApplication1.Window
             XRecognizer r = new XRecognizer(Color.FromArgb(0,0,0), image);
             r.proses();
             image = r.gambaredited;
+
             String message = "";
             message += ("Jumlah Bangun = "+r.codes.Count+"\n\n");
+            foreach (var label_classified in r.labels_classified.Select((x,i) => new { val = x, idx =i })) {
+                message += ("Bangun #" + label_classified.idx + " dikenali sebagai \"" + label_classified.val + "\"\n");
+            }
+            message += "======================================================\n\n";
             foreach (String code in r.codes) {
-                message += ("Chaincode #"+r.codes.IndexOf(code)+" = "+code+"\n\n");
+                message += ("Chaincode #"+r.codes.IndexOf(code)+" = "+code+"\n");
             }
+            message += "======================================================\n\n";
             foreach (String code in r.codes_delta) {
-                message += ("Chaincode_delta #" + r.codes_delta.IndexOf(code) + " = " + code + "\n\n");
+                message += ("Chaincode_delta #" + r.codes_delta.IndexOf(code) + " = " + code + "\n");
             }
+            message += "======================================================\n\n";
             foreach (double[] freq in r.freqs_code_delta) {
                 message += ("Chaincode_delta #" + r.freqs_code_delta.IndexOf(freq) + " = \n\n");
                 for (int i=0; i<freq.Length; i++)
                     message += ("" + i + " = " + freq[i] + "\n");
                 message += "\n";
             }
-            message += "\n";
-            message += "\n";
-            foreach (double[] freq in r.freqs_code_delta) {
+            message += "======================================================\n\n";
+            /*foreach (double[] freq in r.freqs_code_delta) {
                 for (int i=0; i<freq.Length; i++)
                     message += ("" + freq[i].ToString() + ",");
                 message += r.freqs_code_delta.IndexOf(freq) + "\n";
             }
+            /**/
+
             imageBox.Image = image;
             Form_chaincode fcc = new Form_chaincode("Chaincode " + this.filename, message);
             fcc.MdiParent = this.MdiParent;
