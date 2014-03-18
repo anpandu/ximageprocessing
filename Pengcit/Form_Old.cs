@@ -44,7 +44,7 @@ namespace WindowsFormsApplication1 {
                     add_log_text("Tugas 3 Pengolahan Citra");
                 } else if (_opt.Equals("Tugas 4 - Rekognisi")) {
                     XRecognizer r = new XRecognizer(Color.FromArgb(0,0,0), _g);
-                    r.classify();
+                    r.classifyAsNumber();
                     _g = r.gambaredited;
                     String message = "Tugas 4 Pengolahan Citra\n";
                     message += ("jumlah bangun = "+r.codes.Count+"\n");

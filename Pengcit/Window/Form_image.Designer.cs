@@ -48,13 +48,15 @@
             this.robertToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.kayyaliToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.convMatrix2ndDegreeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.prewittToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.robinsonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.kirschToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.chainCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.histogramToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showHistogramToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imageBox = new System.Windows.Forms.PictureBox();
-            this.prewittToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.robinsonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.kirschToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.classifyAsNumberToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.classifyAsShapeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageBox)).BeginInit();
             this.SuspendLayout();
@@ -223,8 +225,32 @@
             this.convMatrix2ndDegreeToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
             this.convMatrix2ndDegreeToolStripMenuItem.Text = "Conv. Matrix 2nd Degree";
             // 
+            // prewittToolStripMenuItem1
+            // 
+            this.prewittToolStripMenuItem1.Name = "prewittToolStripMenuItem1";
+            this.prewittToolStripMenuItem1.Size = new System.Drawing.Size(126, 22);
+            this.prewittToolStripMenuItem1.Text = "Prewitt";
+            this.prewittToolStripMenuItem1.Click += new System.EventHandler(this.prewittToolStripMenuItem1_Click);
+            // 
+            // robinsonToolStripMenuItem
+            // 
+            this.robinsonToolStripMenuItem.Name = "robinsonToolStripMenuItem";
+            this.robinsonToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.robinsonToolStripMenuItem.Text = "Robinson";
+            this.robinsonToolStripMenuItem.Click += new System.EventHandler(this.robinsonToolStripMenuItem_Click);
+            // 
+            // kirschToolStripMenuItem
+            // 
+            this.kirschToolStripMenuItem.Name = "kirschToolStripMenuItem";
+            this.kirschToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.kirschToolStripMenuItem.Text = "Kirsch";
+            this.kirschToolStripMenuItem.Click += new System.EventHandler(this.kirschToolStripMenuItem_Click);
+            // 
             // chainCodeToolStripMenuItem
             // 
+            this.chainCodeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.classifyAsNumberToolStripMenuItem,
+            this.classifyAsShapeToolStripMenuItem});
             this.chainCodeToolStripMenuItem.Name = "chainCodeToolStripMenuItem";
             this.chainCodeToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
             this.chainCodeToolStripMenuItem.Text = "Chain Code";
@@ -247,33 +273,26 @@
             // 
             // imageBox
             // 
-            this.imageBox.Location = new System.Drawing.Point(0, 3);
+            this.imageBox.Location = new System.Drawing.Point(0, 2);
             this.imageBox.Name = "imageBox";
             this.imageBox.Size = new System.Drawing.Size(500, 500);
             this.imageBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.imageBox.TabIndex = 1;
             this.imageBox.TabStop = false;
             // 
-            // prewittToolStripMenuItem1
+            // classifyAsNumberToolStripMenuItem
             // 
-            this.prewittToolStripMenuItem1.Name = "prewittToolStripMenuItem1";
-            this.prewittToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
-            this.prewittToolStripMenuItem1.Text = "Prewitt";
-            this.prewittToolStripMenuItem1.Click += new System.EventHandler(this.prewittToolStripMenuItem1_Click);
+            this.classifyAsNumberToolStripMenuItem.Name = "classifyAsNumberToolStripMenuItem";
+            this.classifyAsNumberToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.classifyAsNumberToolStripMenuItem.Text = "Classify As Number";
+            this.classifyAsNumberToolStripMenuItem.Click += new System.EventHandler(this.classifyAsNumberToolStripMenuItem_Click);
             // 
-            // robinsonToolStripMenuItem
+            // classifyAsShapeToolStripMenuItem
             // 
-            this.robinsonToolStripMenuItem.Name = "robinsonToolStripMenuItem";
-            this.robinsonToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.robinsonToolStripMenuItem.Text = "Robinson";
-            this.robinsonToolStripMenuItem.Click += new System.EventHandler(this.robinsonToolStripMenuItem_Click);
-            // 
-            // kirschToolStripMenuItem
-            // 
-            this.kirschToolStripMenuItem.Name = "kirschToolStripMenuItem";
-            this.kirschToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.kirschToolStripMenuItem.Text = "Kirsch";
-            this.kirschToolStripMenuItem.Click += new System.EventHandler(this.kirschToolStripMenuItem_Click);
+            this.classifyAsShapeToolStripMenuItem.Name = "classifyAsShapeToolStripMenuItem";
+            this.classifyAsShapeToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.classifyAsShapeToolStripMenuItem.Text = "Classify As Shape";
+            this.classifyAsShapeToolStripMenuItem.Click += new System.EventHandler(this.classifyAsShapeToolStripMenuItem_Click);
             // 
             // Form_image
             // 
@@ -324,6 +343,8 @@
         private System.Windows.Forms.ToolStripMenuItem prewittToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem robinsonToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem kirschToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem classifyAsNumberToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem classifyAsShapeToolStripMenuItem;
 
     }
 }

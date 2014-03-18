@@ -133,13 +133,13 @@ namespace WindowsFormsApplication1.Window
         }
 
         private void chainCodeToolStripMenuItem_Click(object sender, EventArgs e)
-        {
+        {   /*
             System.Globalization.CultureInfo customCulture = (System.Globalization.CultureInfo)System.Threading.Thread.CurrentThread.CurrentCulture.Clone();
             customCulture.NumberFormat.NumberDecimalSeparator = ".";
             System.Threading.Thread.CurrentThread.CurrentCulture = customCulture;
 
             XRecognizer r = new XRecognizer(Color.FromArgb(0,0,0), image);
-            r.classify();
+            r.classifyAsNumber();
             image = r.gambaredited;
 
             String message = "";
@@ -163,20 +163,21 @@ namespace WindowsFormsApplication1.Window
                 message += "\n";
             }
             message += "======================================================\n\n";
-            /*foreach (double[] freq in r.freqs_code_delta) {
+            foreach (double[] freq in r.freqs_code_delta) {
                 for (int i=0; i<freq.Length; i++)
                     message += ("" + freq[i].ToString() + ",");
-                message += r.freqs_code_delta.IndexOf(freq) + "\n";
+                //message += r.freqs_code_delta.IndexOf(freq) + "\n";
+                message += "\n";
             }
             /**/
             //imageBox.Image = image;
-
+            /*
             Form_image fimage = new Form_image(this.filepath, image);
             fimage.MdiParent = this.MdiParent;
             fimage.Show();
             Form_chaincode fcc = new Form_chaincode("Chaincode " + this.filename, message);
             fcc.MdiParent = this.MdiParent;
-            fcc.Show();
+            fcc.Show();/**/
         }
 
         private void prewittToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -198,6 +199,78 @@ namespace WindowsFormsApplication1.Window
             image = XImage.toGrayscale(image);
             image = XImage.processDegreeTwo(image, 2);
             imageBox.Image = image;
+        }
+
+        private void classifyAsNumberToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            XRecognizer r = new XRecognizer(Color.FromArgb(0,0,0), image);
+            r.classifyAsNumber();
+            image = r.gambaredited;
+
+            String message = "";
+            message += ("Jumlah Bangun = "+r.codes.Count+"\n\n");
+            foreach (var label_classified in r.labels_classified.Select((x,i) => new { val = x, idx =i })) {
+                message += ("Bangun #" + label_classified.idx + " dikenali sebagai \"" + label_classified.val + "\"\n");
+            }
+            message += "======================================================\n\n";
+            foreach (String code in r.codes) {
+                message += ("Chaincode #"+r.codes.IndexOf(code)+" = "+code+"\n");
+            }
+            message += "======================================================\n\n";
+            foreach (String code in r.codes_delta) {
+                message += ("Chaincode_delta #" + r.codes_delta.IndexOf(code) + " = " + code + "\n");
+            }
+            message += "======================================================\n\n";
+            foreach (double[] freq in r.freqs_code_delta) {
+                message += ("Chaincode_delta #" + r.freqs_code_delta.IndexOf(freq) + " = \n\n");
+                for (int i=0; i<freq.Length; i++)
+                    message += ("" + i + " = " + freq[i] + "\n");
+                message += "\n";
+            }
+            message += "======================================================\n\n";
+
+            Form_image fimage = new Form_image(this.filepath, image);
+            fimage.MdiParent = this.MdiParent;
+            fimage.Show();
+            Form_chaincode fcc = new Form_chaincode("Chaincode " + this.filename, message);
+            fcc.MdiParent = this.MdiParent;
+            fcc.Show();
+        }
+
+        private void classifyAsShapeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            XRecognizer r = new XRecognizer(Color.FromArgb(0,0,0), image);
+            r.classifyAsGeometryShape();
+            image = r.gambaredited;
+
+            String message = "";
+            message += ("Jumlah Bangun = "+r.codes.Count+"\n\n");
+            foreach (var label_classified in r.labels_classified.Select((x,i) => new { val = x, idx =i })) {
+                message += ("Bangun #" + label_classified.idx + " dikenali sebagai \"" + label_classified.val + "\"\n");
+            }
+            message += "======================================================\n\n";
+            foreach (String code in r.codes) {
+                message += ("Chaincode #"+r.codes.IndexOf(code)+" = "+code+"\n");
+            }
+            message += "======================================================\n\n";
+            foreach (String code in r.codes_delta) {
+                message += ("Chaincode_delta #" + r.codes_delta.IndexOf(code) + " = " + code + "\n");
+            }
+            message += "======================================================\n\n";
+            foreach (double[] freq in r.freqs_code_delta) {
+                message += ("Chaincode_delta #" + r.freqs_code_delta.IndexOf(freq) + " = \n\n");
+                for (int i=0; i<freq.Length; i++)
+                    message += ("" + i + " = " + freq[i] + "\n");
+                message += "\n";
+            }
+            message += "======================================================\n\n";
+
+            Form_image fimage = new Form_image(this.filepath, image);
+            fimage.MdiParent = this.MdiParent;
+            fimage.Show();
+            Form_chaincode fcc = new Form_chaincode("Chaincode " + this.filename, message);
+            fcc.MdiParent = this.MdiParent;
+            fcc.Show();
         }
     }
 }

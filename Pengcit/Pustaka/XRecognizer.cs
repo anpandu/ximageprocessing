@@ -21,6 +21,24 @@ namespace WindowsFormsApplication1.Pustaka
 
         public List<string> labels_classified;
 
+        private static Dictionary<String, double[,]> GeometryDatabase = new Dictionary<String, double[,]>()
+        {
+            { "circle", new double[4, 8] { {0.502008032128514,0.265060240963855,0,0,0,0,0,0.232931726907631},
+                                        {0.539823008849557,0.247787610619469,0,0,0,0,0,0.212389380530973},
+                                        {0.510416666666667,0.21875,0.03125,0,0,0,0,0.239583333333333},
+                                        {0.520325203252033,0.260162601626016,0.00813008130081301,0,0,0,0,0.211382113821138}} },
+            { "triangle", new double[5, 8] {{0.556363636363636,0.236363636363636,0,0,0,0,0,0.207272727272727},
+                                        {0.571428571428571,0.204761904761905,0.019047619047619,0,0,0,0,0.204761904761905},
+                                        {0.53475935828877,0.197860962566845,0.0374331550802139,0,0,0,0,0.229946524064171},
+                                        {0.551470588235294,0.220588235294118,0.0220588235294118,0,0,0,0,0.205882352941176},
+                                        {0.54945054945055,0.208791208791209,0.010989010989011,0.021978021978022,0,0,0,0.208791208791209}} },                                        
+            { "square", new double[5, 8] { {0.993031358885017,0,0.00696864111498258,0,0,0,0,0},
+                                        {0.990697674418605,0,0.00930232558139535,0,0,0,0,0},
+                                        {0.989417989417989,0,0.0105820105820106,0,0,0,0,0},
+                                        {0.985915492957747,0,0.0140845070422535,0,0,0,0,0},
+                                        {0.978723404255319,0,0.0212765957446809,0,0,0,0,0}} }
+        };
+
         private static Dictionary<String, double[,]> NumDatabase = new Dictionary<String, double[,]>()
         {
             { "nol", new double[2, 8] { {0.564516129032258,0.25,0,0,0,0,0,0.185483870967742},
@@ -53,7 +71,7 @@ namespace WindowsFormsApplication1.Pustaka
             mark = Color.FromArgb(255, 0, 0);
             gambar_ori = new Bitmap(_gambar);
             gambar = XImage.addFrame(_gambar, background);
-            gambaredited = new Bitmap(_gambar);
+            gambaredited = new Bitmap(gambar_ori);
             arahx = new int[8] { 0, 1, 1, 1, 0, -1, -1, -1 };
             arahy = new int[8] { -1, -1, 0, 1, 1, 1, 0, -1 };
         }
@@ -63,17 +81,20 @@ namespace WindowsFormsApplication1.Pustaka
             return hasil;
         }
         
-        public void classify() {
-            this.calculateChainCode();
-            this.classifyAsNumber();
+        public void classifyAsNumber() {
+            this.calculateChainCodeDelta();
+            this.classifyByDatabase(NumDatabase);
+        }
+        
+        public void classifyAsGeometryShape() {
+            this.calculateChainCodeDelta();
+            this.classifyByDatabase(GeometryDatabase);
         }
 
         private void calculateChainCode () {
-
+            gambar = XImage.addFrame(gambar_ori, background);
+            gambaredited = new Bitmap(gambar_ori);
             codes = new List<string>();
-            codes_delta = new List<string>();
-            freqs_code_delta = new List<double[]>();
-
             for (int i = 1; i < gambar.Width-1; i++) {              // iterasi
                 for (int j = 1; j < gambar.Height-1; j++) {
                     Color ctemp = gambar.GetPixel(i, j);
@@ -84,6 +105,12 @@ namespace WindowsFormsApplication1.Pustaka
                     }
                 }
             }
+        }
+        
+        private void calculateChainCodeDelta () {
+            this.calculateChainCode();
+            codes_delta = new List<string>();
+            freqs_code_delta = new List<double[]>();
             // stringcode delta
             foreach (String code in codes) {
                 char[] char_arr = (char[])code.ToCharArray().Clone();
@@ -118,13 +145,13 @@ namespace WindowsFormsApplication1.Pustaka
             }
         }
 
-        private void classifyAsNumber() {
+        private void classifyByDatabase(Dictionary<String, double[,]> _database) {
             // classify
             labels_classified = new List<string>();
             foreach (double[] freq_code_delta in freqs_code_delta) {
                 Dictionary<double, string> DiffLabelPair = new Dictionary<double, string>();
                 double smallest_diff = 100;
-                foreach (KeyValuePair<string, double[,]> number in NumDatabase) {
+                foreach (KeyValuePair<string, double[,]> number in _database) {
                     double[,] temp = number.Value;
                     //Debug.WriteLine(number.Key);
                     double local_smallest_diff = 100;
