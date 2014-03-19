@@ -28,5 +28,10 @@ namespace WindowsFormsApplication1.Pustaka
             Color temp = Color.FromArgb(Math.Abs(_c.R-_c2.R), Math.Abs(_c.G-_c2.G), Math.Abs(_c.B-_c2.B));
             return temp;
         }
+
+        public static bool isEqual(Color _c, Color _c2) {
+            bool temp = (_c.R==_c2.R)&&(_c.G==_c2.G)&&(_c.B==_c2.B);
+            return temp;
+        }
     }
 }

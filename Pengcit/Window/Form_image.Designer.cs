@@ -51,12 +51,14 @@
             this.prewittToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.robinsonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.kirschToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.skeletonizerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.chainCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.classifyAsNumberToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.classifyAsShapeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.histogramToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showHistogramToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imageBox = new System.Windows.Forms.PictureBox();
-            this.classifyAsNumberToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.classifyAsShapeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageBox)).BeginInit();
             this.SuspendLayout();
@@ -130,6 +132,7 @@
             // 
             this.recognitionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.edgeDetectionToolStripMenuItem,
+            this.skeletonizerToolStripMenuItem,
             this.chainCodeToolStripMenuItem});
             this.recognitionToolStripMenuItem.Name = "recognitionToolStripMenuItem";
             this.recognitionToolStripMenuItem.Size = new System.Drawing.Size(83, 20);
@@ -246,6 +249,14 @@
             this.kirschToolStripMenuItem.Text = "Kirsch";
             this.kirschToolStripMenuItem.Click += new System.EventHandler(this.kirschToolStripMenuItem_Click);
             // 
+            // skeletonizerToolStripMenuItem
+            // 
+            this.skeletonizerToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tesToolStripMenuItem});
+            this.skeletonizerToolStripMenuItem.Name = "skeletonizerToolStripMenuItem";
+            this.skeletonizerToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.skeletonizerToolStripMenuItem.Text = "Skeletonizer";
+            // 
             // chainCodeToolStripMenuItem
             // 
             this.chainCodeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -255,6 +266,20 @@
             this.chainCodeToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
             this.chainCodeToolStripMenuItem.Text = "Chain Code";
             this.chainCodeToolStripMenuItem.Click += new System.EventHandler(this.chainCodeToolStripMenuItem_Click);
+            // 
+            // classifyAsNumberToolStripMenuItem
+            // 
+            this.classifyAsNumberToolStripMenuItem.Name = "classifyAsNumberToolStripMenuItem";
+            this.classifyAsNumberToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.classifyAsNumberToolStripMenuItem.Text = "Classify As Number";
+            this.classifyAsNumberToolStripMenuItem.Click += new System.EventHandler(this.classifyAsNumberToolStripMenuItem_Click);
+            // 
+            // classifyAsShapeToolStripMenuItem
+            // 
+            this.classifyAsShapeToolStripMenuItem.Name = "classifyAsShapeToolStripMenuItem";
+            this.classifyAsShapeToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.classifyAsShapeToolStripMenuItem.Text = "Classify As Shape";
+            this.classifyAsShapeToolStripMenuItem.Click += new System.EventHandler(this.classifyAsShapeToolStripMenuItem_Click);
             // 
             // histogramToolStripMenuItem
             // 
@@ -273,26 +298,19 @@
             // 
             // imageBox
             // 
-            this.imageBox.Location = new System.Drawing.Point(0, 2);
+            this.imageBox.Location = new System.Drawing.Point(0, 3);
             this.imageBox.Name = "imageBox";
             this.imageBox.Size = new System.Drawing.Size(500, 500);
             this.imageBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.imageBox.TabIndex = 1;
             this.imageBox.TabStop = false;
             // 
-            // classifyAsNumberToolStripMenuItem
+            // tesToolStripMenuItem
             // 
-            this.classifyAsNumberToolStripMenuItem.Name = "classifyAsNumberToolStripMenuItem";
-            this.classifyAsNumberToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
-            this.classifyAsNumberToolStripMenuItem.Text = "Classify As Number";
-            this.classifyAsNumberToolStripMenuItem.Click += new System.EventHandler(this.classifyAsNumberToolStripMenuItem_Click);
-            // 
-            // classifyAsShapeToolStripMenuItem
-            // 
-            this.classifyAsShapeToolStripMenuItem.Name = "classifyAsShapeToolStripMenuItem";
-            this.classifyAsShapeToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
-            this.classifyAsShapeToolStripMenuItem.Text = "Classify As Shape";
-            this.classifyAsShapeToolStripMenuItem.Click += new System.EventHandler(this.classifyAsShapeToolStripMenuItem_Click);
+            this.tesToolStripMenuItem.Name = "tesToolStripMenuItem";
+            this.tesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.tesToolStripMenuItem.Text = "Tes";
+            this.tesToolStripMenuItem.Click += new System.EventHandler(this.tesToolStripMenuItem_Click);
             // 
             // Form_image
             // 
@@ -345,6 +363,8 @@
         private System.Windows.Forms.ToolStripMenuItem kirschToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem classifyAsNumberToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem classifyAsShapeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem skeletonizerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tesToolStripMenuItem;
 
     }
 }

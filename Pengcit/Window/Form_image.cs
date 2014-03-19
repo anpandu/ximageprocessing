@@ -272,5 +272,13 @@ namespace WindowsFormsApplication1.Window
             fcc.MdiParent = this.MdiParent;
             fcc.Show();
         }
+
+        private void tesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            image = XSkeletonizer.zhangsein(image_ori);
+            Form_image fimage = new Form_image(this.filepath, image);
+            fimage.MdiParent = this.MdiParent;
+            fimage.Show();
+        }
     }
 }
