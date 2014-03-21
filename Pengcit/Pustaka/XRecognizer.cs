@@ -257,6 +257,22 @@ namespace WindowsFormsApplication1.Pustaka
                     stackx.Push(tx);
                     stacky.Push(ty - 1);
                 }
+                if (!isBackground(gambar.GetPixel(tx+1, ty+1))) {
+                    stackx.Push(tx + 1);
+                    stacky.Push(ty + 1);
+                }
+                if (!isBackground(gambar.GetPixel(tx-1, ty+1))) {
+                    stackx.Push(tx - 1);
+                    stacky.Push(ty + 1);
+                }
+                if (!isBackground(gambar.GetPixel(tx+1, ty-1))) {
+                    stackx.Push(tx + 1);
+                    stacky.Push(ty - 1);
+                }
+                if (!isBackground(gambar.GetPixel(tx-1, ty-1))) {
+                    stackx.Push(tx - 1);
+                    stacky.Push(ty - 1);
+                }
                 gambar.SetPixel(tx, ty, background);
             }
         }
