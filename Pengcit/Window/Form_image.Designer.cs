@@ -58,7 +58,7 @@
             this.histogramToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showHistogramToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imageBox = new System.Windows.Forms.PictureBox();
-            this.tesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.zhangSuenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageBox)).BeginInit();
             this.SuspendLayout();
@@ -252,7 +252,7 @@
             // skeletonizerToolStripMenuItem
             // 
             this.skeletonizerToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tesToolStripMenuItem});
+            this.zhangSuenToolStripMenuItem});
             this.skeletonizerToolStripMenuItem.Name = "skeletonizerToolStripMenuItem";
             this.skeletonizerToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
             this.skeletonizerToolStripMenuItem.Text = "Skeletonizer";
@@ -305,12 +305,12 @@
             this.imageBox.TabIndex = 1;
             this.imageBox.TabStop = false;
             // 
-            // tesToolStripMenuItem
+            // zhangSuenToolStripMenuItem
             // 
-            this.tesToolStripMenuItem.Name = "tesToolStripMenuItem";
-            this.tesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.tesToolStripMenuItem.Text = "Tes";
-            this.tesToolStripMenuItem.Click += new System.EventHandler(this.tesToolStripMenuItem_Click);
+            this.zhangSuenToolStripMenuItem.Name = "zhangSuenToolStripMenuItem";
+            this.zhangSuenToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.zhangSuenToolStripMenuItem.Text = "Zhang-Suen";
+            this.zhangSuenToolStripMenuItem.Click += new System.EventHandler(this.zhangSuenToolStripMenuItem_Click);
             // 
             // Form_image
             // 
@@ -364,7 +364,7 @@
         private System.Windows.Forms.ToolStripMenuItem classifyAsNumberToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem classifyAsShapeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem skeletonizerToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem tesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem zhangSuenToolStripMenuItem;
 
     }
 }

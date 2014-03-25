@@ -172,7 +172,7 @@ namespace WindowsFormsApplication1.Pustaka
                         //Debug.WriteLine("");
                     }
                     //Debug.WriteLine("LSD = " + local_smallest_diff);
-                    DiffLabelPair.Add(local_smallest_diff, number.Key);
+                    DiffLabelPair[local_smallest_diff] = number.Key;
                     smallest_diff = (local_smallest_diff < smallest_diff) ? local_smallest_diff : smallest_diff;
                 }
                 //Debug.WriteLine("Label = " + DiffLabelPair[smallest_diff] + " | Diff = " + smallest_diff);
@@ -208,11 +208,19 @@ namespace WindowsFormsApplication1.Pustaka
                 int nky = iy+arahy[k];
                 Color nextPixel = gambar.GetPixel(nix, niy);
                 Color kiriPixel = gambar.GetPixel(nkx, nky);
-                //Debug.WriteLine("telusur " + ix + " " + iy + " " + arahx[a] + " " + arahy[a] + " " + arahx[k] + " " + arahy[k] + " " + (isLatar(nextPixel)) + " " + (isLatar(kiriPixel)) + " ");
+                //Debug.WriteLine("telusur " + ix + " " + iy + " " + arahx[a] + " " + arahy[a] + " " + arahx[k] + " " + arahy[k] + " " + (isBackground(nextPixel)) + " " + (isBackground(kiriPixel)) + " ");
                 //Debug.WriteLine(count+" telusur " + ix + " " + iy);
-                while ( !(!isBackground(nextPixel)&&isBackground(kiriPixel))&&(count<3000) )
+                int aopposite = (a+4)%8;
+                int ga_count = 0;
+                while ( !(!isBackground(nextPixel)&&isBackground(kiriPixel)&&(a!=aopposite))&&(ga_count<=8) )
                 {
-                    a = (a+1)%8; // diputar clockwise 45 drjt
+                    ga_count += 1;
+                    if (ga_count<=8)
+                        a = (a+1)%8; // diputar clockwise 45 drjt
+                    else {
+                        a = aopposite;
+                        aopposite = (a+4)%8;
+                    }
                     k = (a+7)%8;
                     nix = ix+arahx[a]; 
                     niy = iy+arahy[a]; 
@@ -220,15 +228,15 @@ namespace WindowsFormsApplication1.Pustaka
                     nky = iy+arahy[k];
                     nextPixel = gambar.GetPixel(nix, niy);
                     kiriPixel = gambar.GetPixel(nkx, nky);
-                    //Debug.WriteLine(count+" gantiarah "+" "+arahx[a]+" "+arahy[a]+" "+arahx[k]+" "+arahy[k]);
-                    count++;
+                    //Debug.WriteLine(ga_count+" gantiarah "+" "+arahx[a]+" "+arahy[a]+" "+arahx[k]+" "+arahy[k]);
+                    //count++;
                 }
-                count = 0;
+                //count = 0;
                 ix = nix;
                 iy = niy;
                 code += a;
-                //count++;
-            } while (!(ix==x&&iy==y)&&(count<6000));
+                count++;
+            } while (!(ix==x&&iy==y)&&(count<3000));
             return code;
         }
 

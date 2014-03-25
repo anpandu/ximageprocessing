@@ -275,7 +275,13 @@ namespace WindowsFormsApplication1.Window
 
         private void tesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            image = XSkeletonizer.zhangsein(image_ori);
+        }
+
+        private void zhangSuenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            image = XImage.toGrayscale(image);
+            image = XImage.toBinary(image, 127);
+            image = XSkeletonizer.zhangsein(image);
             Form_image fimage = new Form_image(this.filepath, image);
             fimage.MdiParent = this.MdiParent;
             fimage.Show();
