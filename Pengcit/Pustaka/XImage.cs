@@ -57,6 +57,17 @@ namespace WindowsFormsApplication1.Pustaka
             return framedImage;
         }
 
+        public static Bitmap removeFrame(Bitmap _b) {
+            Bitmap framedRemovedImage = new Bitmap(_b.Width-2, _b.Height-2);
+            for (int i = 0; i < framedRemovedImage.Width; i++) {
+                for (int j = 0; j < framedRemovedImage.Height; j++) {
+                    Color ct = _b.GetPixel(i+1,j+1);
+                    framedRemovedImage.SetPixel(i, j, ct);
+                }
+            }
+            return framedRemovedImage;
+        }
+
         public static Bitmap addMirroredFrame(Bitmap _b) {
             Bitmap framedImage = new Bitmap(_b.Width+2, _b.Height+2);
             for (int i = 0; i < framedImage.Width; i++) {
