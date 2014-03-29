@@ -72,8 +72,8 @@ namespace WindowsFormsApplication1.Pustaka
             gambar_ori = new Bitmap(_gambar);
             gambar = XImage.addFrame(_gambar, background);
             gambaredited = new Bitmap(gambar_ori);
-            arahx = new int[8] { 0, 1, 1, 1, 0, -1, -1, -1 };
-            arahy = new int[8] { -1, -1, 0, 1, 1, 1, 0, -1 };
+            arahx = new int[9] { 0, 1, 1, 1, 0, -1, -1, -1, 0 };
+            arahy = new int[9] { -1, -1, 0, 1, 1, 1, 0, -1, 0 };
         }
 
         private bool isBackground(Color _c) {
@@ -195,32 +195,23 @@ namespace WindowsFormsApplication1.Pustaka
             // 7 0 1
             // 6 - 2
             // 5 4 3
-            int a = 0;       // arah, diwakili 0..7
-            int k = (a+7)%8; // arah kiri (counter-clockwise) dari a, diwakili 0..7
+            int a=4, k; // arah kiri (counter-clockwise) dari a, diwakili 0..7
             int ix = x;
             int iy = y;
             int count = 0;
             do {
+                Debug.WriteLine(count+" "+(ix-1)+" "+(iy-1)+" | "+arahx[a]+" "+arahy[a]);
                 marking(ix-1, iy-1); // dikurangi 1 karena ada frame
-                int nix = ix+arahx[a]; 
-                int niy = iy+arahy[a]; 
-                int nkx = ix+arahx[k]; 
-                int nky = iy+arahy[k];
-                Color nextPixel = gambar.GetPixel(nix, niy);
-                Color kiriPixel = gambar.GetPixel(nkx, nky);
-                //Debug.WriteLine("telusur " + ix + " " + iy + " " + arahx[a] + " " + arahy[a] + " " + arahx[k] + " " + arahy[k] + " " + (isBackground(nextPixel)) + " " + (isBackground(kiriPixel)) + " ");
-                //Debug.WriteLine(count+" telusur " + ix + " " + iy);
+                int nix, niy, nkx, nky;
+                Color nextPixel;
+                Color kiriPixel;
                 int aopposite = (a+4)%8;
                 int ga_count = 0;
-                while ( !(!isBackground(nextPixel)&&isBackground(kiriPixel)&&(a!=aopposite))&&(ga_count<=8) )
+                List<int> next_a = new List<int>();
+                while (ga_count<=8)
                 {
                     ga_count += 1;
-                    if (ga_count<=8)
-                        a = (a+1)%8; // diputar clockwise 45 drjt
-                    else {
-                        a = aopposite;
-                        aopposite = (a+4)%8;
-                    }
+                    a = (a+1)%8; // diputar clockwise 45 drjt
                     k = (a+7)%8;
                     nix = ix+arahx[a]; 
                     niy = iy+arahy[a]; 
@@ -228,15 +219,25 @@ namespace WindowsFormsApplication1.Pustaka
                     nky = iy+arahy[k];
                     nextPixel = gambar.GetPixel(nix, niy);
                     kiriPixel = gambar.GetPixel(nkx, nky);
-                    //Debug.WriteLine(ga_count+" gantiarah "+" "+arahx[a]+" "+arahy[a]+" "+arahx[k]+" "+arahy[k]);
+                    bool landPixel = !isBackground(nextPixel) && isBackground(kiriPixel);
+                    if (landPixel) {
+                        next_a.Add(a);
+                    }
                     //count++;
                 }
                 //count = 0;
-                ix = nix;
-                iy = niy;
+                a = 8;
+                foreach(int _a in next_a) {
+                    if (_a != aopposite)
+                        a = _a;
+                }/**/
+                if ((a==8)&&!(ix==x&&iy==y))
+                    a = aopposite;
                 code += a;
+                ix = ix+arahx[a];
+                iy = iy+arahy[a];
                 count++;
-            } while (!(ix==x&&iy==y)&&(count<3000));
+            } while (!(ix==x&&iy==y)&&(count<2222));
             return code;
         }
 

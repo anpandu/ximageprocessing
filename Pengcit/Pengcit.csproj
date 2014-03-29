@@ -77,6 +77,7 @@
     <Compile Include="Form_Old.Designer.cs">
       <DependentUpon>Form_Old.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pustaka\XBitmap.cs" />
     <Compile Include="Pustaka\XRecognizer.cs" />
     <Compile Include="Pustaka\XSkeletonizer.cs" />
     <Compile Include="Window\Form_chaincode.cs">

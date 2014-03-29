@@ -205,7 +205,6 @@ namespace WindowsFormsApplication1.Window
         {
             XRecognizer r = new XRecognizer(Color.FromArgb(0,0,0), image);
             r.classifyAsNumber();
-            image = r.gambaredited;
 
             String message = "";
             message += ("Jumlah Bangun = "+r.codes.Count+"\n\n");
@@ -229,7 +228,7 @@ namespace WindowsFormsApplication1.Window
             }
             message += "======================================================\n\n";
 
-            Form_image fimage = new Form_image(this.filepath, image);
+            Form_image fimage = new Form_image(this.filepath, r.gambaredited);
             fimage.MdiParent = this.MdiParent;
             fimage.Show();
             Form_chaincode fcc = new Form_chaincode("Chaincode " + this.filename, message);
@@ -241,7 +240,6 @@ namespace WindowsFormsApplication1.Window
         {
             XRecognizer r = new XRecognizer(Color.FromArgb(0,0,0), image);
             r.classifyAsGeometryShape();
-            image = r.gambaredited;
 
             String message = "";
             message += ("Jumlah Bangun = "+r.codes.Count+"\n\n");
@@ -265,7 +263,7 @@ namespace WindowsFormsApplication1.Window
             }
             message += "======================================================\n\n";
 
-            Form_image fimage = new Form_image(this.filepath, image);
+            Form_image fimage = new Form_image(this.filepath, r.gambaredited);
             fimage.MdiParent = this.MdiParent;
             fimage.Show();
             Form_chaincode fcc = new Form_chaincode("Chaincode " + this.filename, message);
