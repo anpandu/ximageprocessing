@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using WindowsFormsApplication1.Window;
+using System.IO;
 
 namespace WindowsFormsApplication1
 {
@@ -25,6 +26,7 @@ namespace WindowsFormsApplication1
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            openImageDialog.InitialDirectory = Directory.GetCurrentDirectory();
             if (openImageDialog.ShowDialog() == DialogResult.OK) {
                 
             }

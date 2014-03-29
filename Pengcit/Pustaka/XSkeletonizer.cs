@@ -112,7 +112,7 @@ namespace WindowsFormsApplication1.Pustaka
                     for (int j=1; j<_b.Width+1; j++) {
                         if (isNotLatar(framedImage, j, i)) {
                             a = getA(framedImage, j, i);
-                            b = getB(framedImage, j, i, ref p8, ref p4, ref p6, ref p8);
+                            b = getB(framedImage, j, i, ref p2, ref p4, ref p6, ref p8);
                             if (2 <= b && b <= 6 && a == 1 && (p2 * p4 * p6 == 0) && (p4 * p6 * p8 == 0)) {
                                 pointsToChange.Add(new System.Drawing.Point(j, i));
                                 notSkeleton = true;
@@ -130,7 +130,7 @@ namespace WindowsFormsApplication1.Pustaka
                     for (int j=1; j<_b.Width+1; j++) {
                         if (isNotLatar(framedImage, j, i)) {
                             a = getA(framedImage, j, i);
-                            b = getB(framedImage, j, i, ref p8, ref p4, ref p6, ref p8);
+                            b = getB(framedImage, j, i, ref p2, ref p4, ref p6, ref p8);
                             if (2 <= b && b <= 6 && a == 1 && (p2 * p4 * p8 == 0) && (p2 * p6 * p8 == 0)) {
                                 pointsToChange.Add(new System.Drawing.Point(j, i));
                                 notSkeleton = true;
