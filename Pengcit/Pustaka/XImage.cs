@@ -270,7 +270,7 @@ namespace WindowsFormsApplication1.Pustaka
 
         public static Bitmap processDegreeOne(Bitmap _b, int _mode)
         {
-            Bitmap temp = addMirroredFrame(_b);
+            XBitmap temp = new XBitmap(addMirroredFrame(_b));
             Bitmap output = new Bitmap(_b.Width, _b.Height);
 
             double[,] convmatrix;
@@ -315,7 +315,7 @@ namespace WindowsFormsApplication1.Pustaka
 
         public static Bitmap processDegreeTwo(Bitmap _b, int _mode)
         {
-            Bitmap temp = addMirroredFrame(_b);
+            XBitmap temp = new XBitmap(addMirroredFrame(_b));
             Bitmap output = new Bitmap(_b.Width, _b.Height);
 
             double[,] convmatrix;
@@ -383,17 +383,17 @@ namespace WindowsFormsApplication1.Pustaka
             return res;
         }
 
-        private static double dotProduct(Bitmap _bmp, double[,] _convmatrix, int i, int j) // putar matrix 45 drj, 8x jadi kembali ke asal, untuk derajat 2
+        private static double dotProduct(XBitmap _bmp, double[,] _convmatrix, int i, int j) // putar matrix 45 drj, 8x jadi kembali ke asal, untuk derajat 2
         {
-            double res = (double)_bmp.GetPixel(i - 1, j - 1).R * _convmatrix[0, 0] +
-                        (double)_bmp.GetPixel(i - 1, j).R * _convmatrix[0, 1] +
-                        (double)_bmp.GetPixel(i - 1, j + 1).R * _convmatrix[0, 2] +
-                        (double)_bmp.GetPixel(i, j - 1).R * _convmatrix[1, 0] +
-                        (double)_bmp.GetPixel(i, j).R * _convmatrix[1, 1] +
-                        (double)_bmp.GetPixel(i, j + 1).R * _convmatrix[1, 2] +
-                        (double)_bmp.GetPixel(i + 1, j - 1).R * _convmatrix[2, 0] +
-                        (double)_bmp.GetPixel(i + 1, j).R * _convmatrix[2, 1] +
-                        (double)_bmp.GetPixel(i + 1, j + 1).R * _convmatrix[2, 2];
+            double res = (double)_bmp.getPixel(i - 1, j - 1).R * _convmatrix[0, 0] +
+                        (double)_bmp.getPixel(i - 1, j).R * _convmatrix[0, 1] +
+                        (double)_bmp.getPixel(i - 1, j + 1).R * _convmatrix[0, 2] +
+                        (double)_bmp.getPixel(i, j - 1).R * _convmatrix[1, 0] +
+                        (double)_bmp.getPixel(i, j).R * _convmatrix[1, 1] +
+                        (double)_bmp.getPixel(i, j + 1).R * _convmatrix[1, 2] +
+                        (double)_bmp.getPixel(i + 1, j - 1).R * _convmatrix[2, 0] +
+                        (double)_bmp.getPixel(i + 1, j).R * _convmatrix[2, 1] +
+                        (double)_bmp.getPixel(i + 1, j + 1).R * _convmatrix[2, 2];
             return res;
         }
     }

@@ -9,9 +9,13 @@ namespace WindowsFormsApplication1.Pustaka
     class XBitmap
     {
         private int[,,] bitarr;
+        public int Width;
+        public int Height;
 
         public XBitmap(Bitmap _b) {
             bitarr = getImgArrFromBitmap(_b);
+            Width = _b.Width;
+            Height = _b.Height;
         }
 
         public Color getPixel(int x, int y) {
