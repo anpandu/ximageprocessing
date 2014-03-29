@@ -279,8 +279,8 @@ namespace WindowsFormsApplication1.Window
 
         private void zhangSuenToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //image = XImage.toGrayscale(image);
-            //image = XImage.toBinary(image, 96);
+            image = XImage.toGrayscale(image);
+            image = XImage.toBinary(image, 96);
             image = XSkeletonizer.zhangsuen(image);
             Form_image fimage = new Form_image(this.filepath, image);
             fimage.MdiParent = this.MdiParent;
