@@ -46,81 +46,105 @@ namespace WindowsFormsApplication1.Window
 
         private void grayscaleToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            image = XImage.toGrayscale(image);
-            imageBox.Image = image;
+            Bitmap timage = XImage.toGrayscale(image);
+            Form_image fimage = new Form_image(this.filepath, timage);
+            fimage.MdiParent = this.MdiParent;
+            fimage.Show();
         }
 
         private void invertToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            image = XImage.toInverted(image);
-            imageBox.Image = image;
+            Bitmap timage = XImage.toInverted(image);
+            Form_image fimage = new Form_image(this.filepath, timage);
+            fimage.MdiParent = this.MdiParent;
+            fimage.Show();
         }
 
         private void contrastToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            image = XImage.toContrast1(image);
-            imageBox.Image = image;
+            Bitmap timage = XImage.toContrast1(image);
+            Form_image fimage = new Form_image(this.filepath, timage);
+            fimage.MdiParent = this.MdiParent;
+            fimage.Show();
         }
 
         private void sharpenToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            image = XImage.sharpen(image, 3);
-            imageBox.Image = image;
+            Bitmap timage = XImage.sharpen(image, 3);
+            Form_image fimage = new Form_image(this.filepath, timage);
+            fimage.MdiParent = this.MdiParent;
+            fimage.Show();
         }
 
         private void resetImageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            image = XImage.copy(image_ori);
-            imageBox.Image = image;
+            Bitmap timage = XImage.copy(image_ori);
+            Form_image fimage = new Form_image(this.filepath, timage);
+            fimage.MdiParent = this.MdiParent;
+            fimage.Show();
         }
 
         private void differenceToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            image = XImage.toGrayscale(image);
-            image = XImage.edgeDiff2(image_ori);
-            imageBox.Image = image;
+            Bitmap timage = XImage.toGrayscale(image);
+            timage = XImage.edgeDiff2(timage);
+            Form_image fimage = new Form_image(this.filepath, timage);
+            fimage.MdiParent = this.MdiParent;
+            fimage.Show();
         }
 
         private void differenceToolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            image = XImage.toGrayscale(image);
-            image = XImage.edgeDiff4(image_ori);
-            imageBox.Image = image;
+            Bitmap timage = XImage.toGrayscale(image);
+            timage = XImage.edgeDiff4(timage);
+            Form_image fimage = new Form_image(this.filepath, timage);
+            fimage.MdiParent = this.MdiParent;
+            fimage.Show();
         }
 
         private void prewittToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            image = XImage.toGrayscale(image);
-            image = XImage.processDegreeOne(image, 0);
-            imageBox.Image = image;
+            Bitmap timage = XImage.toGrayscale(image);
+            timage = XImage.processDegreeOne(timage, 0);
+            Form_image fimage = new Form_image(this.filepath, timage);
+            fimage.MdiParent = this.MdiParent;
+            fimage.Show();
         }
 
         private void sobelToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            image = XImage.toGrayscale(image);
-            image = XImage.processDegreeOne(image, 1);
-            imageBox.Image = image;
+            Bitmap timage = XImage.toGrayscale(image);
+            timage = XImage.processDegreeOne(timage, 1);
+            Form_image fimage = new Form_image(this.filepath, timage);
+            fimage.MdiParent = this.MdiParent;
+            fimage.Show();
         }
 
         private void freiChenToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            image = XImage.toGrayscale(image);
-            image = XImage.processDegreeOne(image, 2);
-            imageBox.Image = image;
+            Bitmap timage = XImage.toGrayscale(image);
+            timage = XImage.processDegreeOne(timage, 2);
+            Form_image fimage = new Form_image(this.filepath, timage);
+            fimage.MdiParent = this.MdiParent;
+            fimage.Show();
         }
 
         private void robertToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            image = XImage.toGrayscale(image);
-            image = XImage.processDegreeOne(image, 3);
-            imageBox.Image = image;
+            Bitmap timage = XImage.toGrayscale(image);
+            timage = XImage.processDegreeOne(timage, 3);
+            Form_image fimage = new Form_image(this.filepath, timage);
+            fimage.MdiParent = this.MdiParent;
+            fimage.Show();
         }
 
         private void kayyaliToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            image = XImage.toGrayscale(image);
-            image = XImage.processDegreeOne(image, 4);
-            imageBox.Image = image;
+            Bitmap timage = XImage.toGrayscale(image);
+            timage = XImage.processDegreeOne(timage, 4);
+            Form_image fimage = new Form_image(this.filepath, timage);
+            fimage.MdiParent = this.MdiParent;
+            fimage.Show();
         }
 
         private void showHistogramToolStripMenuItem_Click(object sender, EventArgs e)
@@ -182,23 +206,29 @@ namespace WindowsFormsApplication1.Window
 
         private void prewittToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            image = XImage.toGrayscale(image);
-            image = XImage.processDegreeTwo(image, 0);
-            imageBox.Image = image;
+            Bitmap timage = XImage.toGrayscale(image);
+            timage = XImage.processDegreeTwo(timage, 0);
+            Form_image fimage = new Form_image(this.filepath, timage);
+            fimage.MdiParent = this.MdiParent;
+            fimage.Show();
         }
 
         private void robinsonToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            image = XImage.toGrayscale(image);
-            image = XImage.processDegreeTwo(image, 1);
-            imageBox.Image = image;
+            Bitmap timage = XImage.toGrayscale(image);
+            timage = XImage.processDegreeTwo(timage, 1);
+            Form_image fimage = new Form_image(this.filepath, timage);
+            fimage.MdiParent = this.MdiParent;
+            fimage.Show();
         }
 
         private void kirschToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            image = XImage.toGrayscale(image);
-            image = XImage.processDegreeTwo(image, 2);
-            imageBox.Image = image;
+            Bitmap timage = XImage.toGrayscale(image);
+            timage = XImage.processDegreeTwo(timage, 2);
+            Form_image fimage = new Form_image(this.filepath, timage);
+            fimage.MdiParent = this.MdiParent;
+            fimage.Show();
         }
 
         private void classifyAsNumberToolStripMenuItem_Click(object sender, EventArgs e)
@@ -277,10 +307,10 @@ namespace WindowsFormsApplication1.Window
 
         private void zhangSuenToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            image = XImage.toGrayscale(image);
-            image = XImage.toBinary(image, 96);
-            image = XSkeletonizer.zhangsuen(image);
-            Form_image fimage = new Form_image(this.filepath, image);
+            Bitmap timage = XImage.toGrayscale(image);
+            timage = XImage.toBinary(timage, 96);
+            timage = XSkeletonizer.zhangsuen(timage);
+            Form_image fimage = new Form_image(this.filepath, timage);
             fimage.MdiParent = this.MdiParent;
             fimage.Show();
         }
