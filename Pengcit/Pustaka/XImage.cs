@@ -102,12 +102,13 @@ namespace WindowsFormsApplication1.Pustaka
         public static Bitmap edgeDiff4(Bitmap _b) { // inversi warna
             Bitmap result = copy(_b);
             Bitmap framedImage = addMirroredFrame(_b);
+            XBitmap framedImage_xbmp = new XBitmap(framedImage);
             for (int i = 1; i < framedImage.Width-1; i++) {
                 for (int j = 1; j < framedImage.Height-1; j++) {
-                    Color dc1 = XColor.differrence(framedImage.GetPixel(i,j-1), framedImage.GetPixel(i,j+1));
-                    Color dc2 = XColor.differrence(framedImage.GetPixel(i+1,j-1), framedImage.GetPixel(i-1,j+1));
-                    Color dc3 = XColor.differrence(framedImage.GetPixel(i+1,j), framedImage.GetPixel(i-1,j));
-                    Color dc4 = XColor.differrence(framedImage.GetPixel(i+1,j+1), framedImage.GetPixel(i-1,j-1));
+                    Color dc1 = XColor.differrence(framedImage_xbmp.getPixel(i, j - 1), framedImage_xbmp.getPixel(i, j + 1));
+                    Color dc2 = XColor.differrence(framedImage_xbmp.getPixel(i + 1, j - 1), framedImage_xbmp.getPixel(i - 1, j + 1));
+                    Color dc3 = XColor.differrence(framedImage_xbmp.getPixel(i + 1, j), framedImage_xbmp.getPixel(i - 1, j));
+                    Color dc4 = XColor.differrence(framedImage_xbmp.getPixel(i + 1, j + 1), framedImage_xbmp.getPixel(i - 1, j - 1));
                     int maxdr = Math.Max(dc1.R, Math.Max(dc2.R, Math.Max(dc3.R, dc4.R)));
                     int maxdg = Math.Max(dc1.G, Math.Max(dc2.G, Math.Max(dc3.G, dc4.G)));
                     int maxdb = Math.Max(dc1.B, Math.Max(dc2.B, Math.Max(dc3.B, dc4.B)));
@@ -120,10 +121,11 @@ namespace WindowsFormsApplication1.Pustaka
         public static Bitmap edgeDiff2(Bitmap _b) { // inversi warna
             Bitmap result = copy(_b);
             Bitmap framedImage = addMirroredFrame(_b);
+            XBitmap framedImage_xbmp = new XBitmap(framedImage);
             for (int i = 1; i < framedImage.Width-1; i++) {
                 for (int j = 1; j < framedImage.Height-1; j++) {
-                    Color dc1 = XColor.differrence(framedImage.GetPixel(i,j-1), framedImage.GetPixel(i,j+1));
-                    Color dc2 = XColor.differrence(framedImage.GetPixel(i+1,j), framedImage.GetPixel(i-1,j));
+                    Color dc1 = XColor.differrence(framedImage_xbmp.getPixel(i, j - 1), framedImage_xbmp.getPixel(i, j + 1));
+                    Color dc2 = XColor.differrence(framedImage_xbmp.getPixel(i + 1, j), framedImage_xbmp.getPixel(i - 1, j));
                     int maxdr = Math.Max(dc1.R, dc2.R);
                     int maxdg = Math.Max(dc1.G, dc2.G);
                     int maxdb = Math.Max(dc1.B, dc2.B);
