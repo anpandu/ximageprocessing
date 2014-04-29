@@ -145,6 +145,86 @@ namespace WindowsFormsApplication1.Pustaka
             }
             return temp;
         }
+        
+        public static Bitmap gradDiff4(Bitmap _b) { // gradation diff
+            Bitmap result = copy(_b);
+            Bitmap framedImage = addMirroredFrame(_b);
+            XBitmap framedImage_xbmp = new XBitmap(framedImage);
+            for (int i = 1; i < framedImage.Width-1; i++) {
+                for (int j = 1; j < framedImage.Height-1; j++) {
+                    Color px = framedImage_xbmp.getPixel(i, j);
+                    int thres = 21;
+                    bool isWarnaKulit = (px.R>102-thres && px.R<102+thres) && (px.G>107-thres && px.G<107+thres) && (px.B>95-thres && px.B<95+thres);
+                    int maxdr = isWarnaKulit ? 255 : 0;
+                    int maxdg = isWarnaKulit ? 255 : 0;
+                    int maxdb = isWarnaKulit ? 255 : 0;
+                    result.SetPixel(i-1, j-1, Color.FromArgb(maxdr, maxdr, maxdb));
+                }
+            }
+            return result;
+        }
+        
+        public static Bitmap grad(Bitmap _b) { // gradation diff
+            Bitmap result = copy(_b);
+            XBitmap framedImage_xbmp = new XBitmap(result);
+            for (int i = 0; i < result.Width; i++) {
+                for (int j = 0; j < result.Height; j++) {
+                    Color px = framedImage_xbmp.getPixel(i, j);
+                    int thres = 22;
+                    bool isWarnaKulit = (px.R>102-thres && px.R<102+thres) && (px.G>107-thres && px.G<107+thres) && (px.B>95-thres && px.B<95+thres);
+                    int maxdr = isWarnaKulit ? 255 : 0;
+                    int maxdg = isWarnaKulit ? 255 : 0;
+                    int maxdb = isWarnaKulit ? 255 : 0;
+                    framedImage_xbmp.setPixel(i, j, Color.FromArgb(maxdr, maxdr, maxdb));
+                }
+            }
+            return (framedImage_xbmp.getBitmap());
+        }
+        
+        public static Bitmap grad2(Bitmap _b) { // gradation diff
+            Bitmap result = copy(_b);
+            Bitmap framedImage = addFrame(_b, Color.FromArgb(0, 0, 0));
+            framedImage = addFrame(framedImage, Color.FromArgb(0, 0, 0));
+            framedImage = addFrame(framedImage, Color.FromArgb(0, 0, 0));
+            framedImage = addFrame(framedImage, Color.FromArgb(0, 0, 0));
+            framedImage = addFrame(framedImage, Color.FromArgb(0, 0, 0));
+            framedImage = addFrame(framedImage, Color.FromArgb(0, 0, 0));
+            framedImage = addFrame(framedImage, Color.FromArgb(0, 0, 0));
+            framedImage = addFrame(framedImage, Color.FromArgb(0, 0, 0));
+            framedImage = addFrame(framedImage, Color.FromArgb(0, 0, 0));
+            framedImage = addFrame(framedImage, Color.FromArgb(0, 0, 0));
+            framedImage = addFrame(framedImage, Color.FromArgb(0, 0, 0));
+            framedImage = addFrame(framedImage, Color.FromArgb(0, 0, 0));
+            framedImage = addFrame(framedImage, Color.FromArgb(0, 0, 0));
+            framedImage = addFrame(framedImage, Color.FromArgb(0, 0, 0));
+            framedImage = addFrame(framedImage, Color.FromArgb(0, 0, 0));
+            framedImage = addFrame(framedImage, Color.FromArgb(0, 0, 0));
+            framedImage = addFrame(framedImage, Color.FromArgb(0, 0, 0));
+            XBitmap framedImage_xbmp = new XBitmap(framedImage);
+            for (int i = 0; i < result.Width; i++) {
+                for (int j = 0; j < result.Height; j++) {
+                    int r = 17;
+                    int x = i+r;
+                    int y = j+r;
+                    int count = 0;
+                    for (int k = x-r; k < x+r; k++) {
+                        for (int l = y-r; l < y+r; l++) {
+                            Color px = framedImage_xbmp.getPixel(k, l);
+                            count += (px.R==255) ? 1 : 0;
+                        }
+                    }
+                   if (count>300)
+                       result.SetPixel(i,j,Color.FromArgb(255,0,255));
+                }
+            }/**/
+            return result;
+        }
+
+        private static int floorTo(int _i, int _k) {
+            int res = _i/_k;
+            res *= _k;
+            return res;
+        }
 
         public static Bitmap toInverted(Bitmap _b) { // inversi warna
             Bitmap temp = copy(_b);
@@ -397,6 +477,29 @@ namespace WindowsFormsApplication1.Pustaka
                         (double)_bmp.getPixel(i + 1, j).R * _convmatrix[2, 1] +
                         (double)_bmp.getPixel(i + 1, j + 1).R * _convmatrix[2, 2];
             return res;
+        }
+
+        
+        public static Bitmap RectangleMorph(Bitmap _b) { // gradation diff
+            Point E = new Point(_b.Width * 0, _b.Height * 0);
+            Point F = new Point(_b.Width * 1, _b.Height * 0);
+            Point G = new Point(_b.Width * 1, _b.Height * 1);
+            Point H = new Point(_b.Width * 0, _b.Height * 1);
+            int res_w = Math.Max(F.X-E.X, G.X-H.X);
+            int res_h = Math.Max(H.Y-E.Y, G.Y-F.Y);
+            Bitmap result = new Bitmap(res_w, res_h);
+            XBitmap result_xbmp = new XBitmap(result);
+            for (int i = 0; i < result.Width; i++) {
+                for (int j = 0; j < result.Height; j++) {
+                    int new_width = j * ((G.X-H.X)-(F.X-E.X))/H.Y-E.Y + F.X-E.X;
+                    int new_height = i * ((G.Y-F.Y)-(H.Y-E.Y))/F.X-E.X + H.Y-E.Y;
+                    int x1 = i*_b.Width/new_width;
+                    int y1 = j*_b.Height/new_height;
+                    Color px = (y1>=_b.Height||x1>=_b.Width||y1<0||x1<0) ? Color.FromArgb(0,0,0) : _b.GetPixel(x1, y1);
+                    result_xbmp.setPixel(i, j, px);
+                }
+            }
+            return (result_xbmp.getBitmap());
         }
     }
 }

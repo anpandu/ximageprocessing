@@ -52,13 +52,19 @@
             this.robinsonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.kirschToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.skeletonizerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.zhangSuenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.chainCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.classifyAsAlphabetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.classifyAsNumberToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.classifyAsShapeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.faceRecognitionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gradationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.histogramToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showHistogramToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.imageBox = new System.Windows.Forms.PictureBox();
-            this.zhangSuenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.morphingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.rectangleMorphingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageBox)).BeginInit();
             this.SuspendLayout();
@@ -82,6 +88,8 @@
             this.invertToolStripMenuItem,
             this.contrastToolStripMenuItem,
             this.sharpenToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.morphingToolStripMenuItem,
             this.toolStripMenuItem2,
             this.resetImageToolStripMenuItem});
             this.preprocessToolStripMenuItem.Name = "preprocessToolStripMenuItem";
@@ -91,40 +99,40 @@
             // grayscaleToolStripMenuItem
             // 
             this.grayscaleToolStripMenuItem.Name = "grayscaleToolStripMenuItem";
-            this.grayscaleToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.grayscaleToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.grayscaleToolStripMenuItem.Text = "Grayscale";
             this.grayscaleToolStripMenuItem.Click += new System.EventHandler(this.grayscaleToolStripMenuItem_Click);
             // 
             // invertToolStripMenuItem
             // 
             this.invertToolStripMenuItem.Name = "invertToolStripMenuItem";
-            this.invertToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.invertToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.invertToolStripMenuItem.Text = "Invert";
             this.invertToolStripMenuItem.Click += new System.EventHandler(this.invertToolStripMenuItem_Click);
             // 
             // contrastToolStripMenuItem
             // 
             this.contrastToolStripMenuItem.Name = "contrastToolStripMenuItem";
-            this.contrastToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.contrastToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.contrastToolStripMenuItem.Text = "Contrast";
             this.contrastToolStripMenuItem.Click += new System.EventHandler(this.contrastToolStripMenuItem_Click);
             // 
             // sharpenToolStripMenuItem
             // 
             this.sharpenToolStripMenuItem.Name = "sharpenToolStripMenuItem";
-            this.sharpenToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.sharpenToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.sharpenToolStripMenuItem.Text = "Sharpen";
             this.sharpenToolStripMenuItem.Click += new System.EventHandler(this.sharpenToolStripMenuItem_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(139, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(149, 6);
             // 
             // resetImageToolStripMenuItem
             // 
             this.resetImageToolStripMenuItem.Name = "resetImageToolStripMenuItem";
-            this.resetImageToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.resetImageToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.resetImageToolStripMenuItem.Text = "Reset Image";
             this.resetImageToolStripMenuItem.Click += new System.EventHandler(this.resetImageToolStripMenuItem_Click);
             // 
@@ -133,7 +141,8 @@
             this.recognitionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.edgeDetectionToolStripMenuItem,
             this.skeletonizerToolStripMenuItem,
-            this.chainCodeToolStripMenuItem});
+            this.chainCodeToolStripMenuItem,
+            this.faceRecognitionToolStripMenuItem});
             this.recognitionToolStripMenuItem.Name = "recognitionToolStripMenuItem";
             this.recognitionToolStripMenuItem.Size = new System.Drawing.Size(83, 20);
             this.recognitionToolStripMenuItem.Text = "Recognition";
@@ -145,7 +154,7 @@
             this.convMatrix1stDegreeToolStripMenuItem,
             this.convMatrix2ndDegreeToolStripMenuItem});
             this.edgeDetectionToolStripMenuItem.Name = "edgeDetectionToolStripMenuItem";
-            this.edgeDetectionToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.edgeDetectionToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.edgeDetectionToolStripMenuItem.Text = "Edge Detection";
             // 
             // differenceToolStripMenuItem
@@ -254,32 +263,62 @@
             this.skeletonizerToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.zhangSuenToolStripMenuItem});
             this.skeletonizerToolStripMenuItem.Name = "skeletonizerToolStripMenuItem";
-            this.skeletonizerToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.skeletonizerToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.skeletonizerToolStripMenuItem.Text = "Skeletonizer";
+            // 
+            // zhangSuenToolStripMenuItem
+            // 
+            this.zhangSuenToolStripMenuItem.Name = "zhangSuenToolStripMenuItem";
+            this.zhangSuenToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.zhangSuenToolStripMenuItem.Text = "Zhang-Suen";
+            this.zhangSuenToolStripMenuItem.Click += new System.EventHandler(this.zhangSuenToolStripMenuItem_Click);
             // 
             // chainCodeToolStripMenuItem
             // 
             this.chainCodeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.classifyAsAlphabetToolStripMenuItem,
             this.classifyAsNumberToolStripMenuItem,
             this.classifyAsShapeToolStripMenuItem});
             this.chainCodeToolStripMenuItem.Name = "chainCodeToolStripMenuItem";
-            this.chainCodeToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.chainCodeToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.chainCodeToolStripMenuItem.Text = "Chain Code";
             this.chainCodeToolStripMenuItem.Click += new System.EventHandler(this.chainCodeToolStripMenuItem_Click);
+            // 
+            // classifyAsAlphabetToolStripMenuItem
+            // 
+            this.classifyAsAlphabetToolStripMenuItem.Name = "classifyAsAlphabetToolStripMenuItem";
+            this.classifyAsAlphabetToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.classifyAsAlphabetToolStripMenuItem.Text = "Classify As Alphabet";
+            this.classifyAsAlphabetToolStripMenuItem.Click += new System.EventHandler(this.classifyAsAlphabetToolStripMenuItem_Click);
             // 
             // classifyAsNumberToolStripMenuItem
             // 
             this.classifyAsNumberToolStripMenuItem.Name = "classifyAsNumberToolStripMenuItem";
-            this.classifyAsNumberToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.classifyAsNumberToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
             this.classifyAsNumberToolStripMenuItem.Text = "Classify As Number";
             this.classifyAsNumberToolStripMenuItem.Click += new System.EventHandler(this.classifyAsNumberToolStripMenuItem_Click);
             // 
             // classifyAsShapeToolStripMenuItem
             // 
             this.classifyAsShapeToolStripMenuItem.Name = "classifyAsShapeToolStripMenuItem";
-            this.classifyAsShapeToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.classifyAsShapeToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
             this.classifyAsShapeToolStripMenuItem.Text = "Classify As Shape";
             this.classifyAsShapeToolStripMenuItem.Click += new System.EventHandler(this.classifyAsShapeToolStripMenuItem_Click);
+            // 
+            // faceRecognitionToolStripMenuItem
+            // 
+            this.faceRecognitionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.gradationToolStripMenuItem});
+            this.faceRecognitionToolStripMenuItem.Name = "faceRecognitionToolStripMenuItem";
+            this.faceRecognitionToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.faceRecognitionToolStripMenuItem.Text = "Face Recognition";
+            // 
+            // gradationToolStripMenuItem
+            // 
+            this.gradationToolStripMenuItem.Name = "gradationToolStripMenuItem";
+            this.gradationToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.gradationToolStripMenuItem.Text = "Gradation";
+            this.gradationToolStripMenuItem.Click += new System.EventHandler(this.gradationToolStripMenuItem_Click);
             // 
             // histogramToolStripMenuItem
             // 
@@ -305,12 +344,25 @@
             this.imageBox.TabIndex = 1;
             this.imageBox.TabStop = false;
             // 
-            // zhangSuenToolStripMenuItem
+            // morphingToolStripMenuItem
             // 
-            this.zhangSuenToolStripMenuItem.Name = "zhangSuenToolStripMenuItem";
-            this.zhangSuenToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.zhangSuenToolStripMenuItem.Text = "Zhang-Suen";
-            this.zhangSuenToolStripMenuItem.Click += new System.EventHandler(this.zhangSuenToolStripMenuItem_Click);
+            this.morphingToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.rectangleMorphingToolStripMenuItem});
+            this.morphingToolStripMenuItem.Name = "morphingToolStripMenuItem";
+            this.morphingToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.morphingToolStripMenuItem.Text = "Morphing";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            // 
+            // rectangleMorphingToolStripMenuItem
+            // 
+            this.rectangleMorphingToolStripMenuItem.Name = "rectangleMorphingToolStripMenuItem";
+            this.rectangleMorphingToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
+            this.rectangleMorphingToolStripMenuItem.Text = "Rectangle Morphing";
+            this.rectangleMorphingToolStripMenuItem.Click += new System.EventHandler(this.rectangleMorphingToolStripMenuItem_Click);
             // 
             // Form_image
             // 
@@ -365,6 +417,12 @@
         private System.Windows.Forms.ToolStripMenuItem classifyAsShapeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem skeletonizerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem zhangSuenToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem classifyAsAlphabetToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem faceRecognitionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem gradationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem morphingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem rectangleMorphingToolStripMenuItem;
 
     }
 }

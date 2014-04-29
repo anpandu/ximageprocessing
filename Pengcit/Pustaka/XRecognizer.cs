@@ -10,6 +10,7 @@ namespace WindowsFormsApplication1.Pustaka
     class XRecognizer
     {
         public Color background;
+        public Color nonbackground;
         public Color mark;
         public Bitmap gambar_ori;
         public Bitmap gambar;
@@ -21,6 +22,8 @@ namespace WindowsFormsApplication1.Pustaka
 
         public List<string> labels_classified;
 
+        /**/
+        
         private static Dictionary<String, double[,]> GeometryDatabase = new Dictionary<String, double[,]>()
         {
             { "circle", new double[4, 8] { {0.502008032128514,0.265060240963855,0,0,0,0,0,0.232931726907631},
@@ -63,6 +66,36 @@ namespace WindowsFormsApplication1.Pustaka
                                                 {0.516556291390728,0.271523178807947,0,0,0,0,0.00662251655629139,0.205298013245033}} },
         };
 
+        private static Dictionary<String, double[,]> AlphabetDatabase = new Dictionary<String, double[,]>()
+        {
+            { "A", new double[1, 8] { {0.440217391304348,0.277173913043478,0.016304347826087,0,0,0,0,0.266304347826087,}} },
+            { "B", new double[1, 8] { {0.739393939393939,0.157575757575758,0,0,0,0,0.00606060606060606,0.096969696969697,}} },
+            { "C", new double[1, 8] { {0.540284360189573,0.227488151658768,0.014218009478673,0,0,0,0,0.218009478672986,}} },
+            { "D", new double[1, 8] { {0.746987951807229,0.150602409638554,0,0,0,0,0,0.102409638554217,}} },
+            { "E", new double[1, 8] { {0.911290322580645,0.0483870967741935,0.00806451612903226,0,0,0,0,0.032258064516129,}} },
+            { "F", new double[1, 8] { {0.91747572815534,0.0242718446601942,0.0242718446601942,0,0,0,0,0.0339805825242718,}} },
+            { "G", new double[1, 8] { {0.648648648648649,0.168918918918919,0.0135135135135135,0,0,0,0,0.168918918918919,}} },
+            { "H", new double[1, 8] { {0.929078014184397,0.0283687943262411,0.0141843971631206,0,0,0,0,0.0283687943262411,}} },
+            { "I", new double[1, 8] { {0.967741935483871,0,0.032258064516129,0,0,0,0,0,}} },
+            { "J", new double[1, 8] { {0.823943661971831,0.0845070422535211,0.0211267605633803,0,0,0,0,0.0704225352112676,}} },
+            { "K", new double[1, 8] { {0.746835443037975,0.122362869198312,0.0168776371308017,0,0,0,0.00843881856540084,0.105485232067511,}} },
+            { "L", new double[1, 8] { {0.932515337423313,0.049079754601227,0.00613496932515337,0,0,0,0,0.0122699386503067,}} },
+            { "M", new double[1, 8] { {0.634204275534442,0.178147268408551,0.0118764845605701,0,0,0,0.00712589073634204,0.168646080760095,}} },
+            { "N", new double[1, 8] { {0.715654952076677,0.134185303514377,0.0159744408945687,0,0,0,0.00638977635782748,0.12779552715655,}} },
+            { "O", new double[1, 8] { {0.506172839506173,0.271604938271605,0,0,0,0,0,0.222222222222222,}} },
+            { "P", new double[1, 8] { {0.796178343949045,0.10828025477707,0.0127388535031847,0,0,0,0,0.0828025477707006,}} },
+            { "Q", new double[1, 8] { {0.476923076923077,0.266666666666667,0.0102564102564103,0,0,0,0,0.246153846153846,}} },
+            { "R", new double[1, 8] { {0.6875,0.163461538461538,0.00961538461538462,0,0,0,0.00480769230769231,0.134615384615385,}} },
+            { "S", new double[1, 8] { {0.485714285714286,0.261904761904762,0.00952380952380952,0,0,0,0,0.242857142857143,}} },
+            { "T", new double[1, 8] { {0.936842105263158,0.0210526315789474,0.0210526315789474,0,0,0,0,0.0210526315789474,}} },
+            { "U", new double[1, 8] { {0.769230769230769,0.119230769230769,0.00769230769230769,0,0,0,0,0.103846153846154,}} },
+            { "V", new double[1, 8] { {0.371681415929204,0.314159292035398,0.0132743362831858,0,0,0,0.00442477876106195,0.29646017699115,}} },
+            { "W", new double[1, 8] { {0.491358024691358,0.25679012345679,0.00740740740740741,0,0,0,0.00740740740740741,0.237037037037037,}} },
+            { "X", new double[1, 8] { {0.257777777777778,0.364444444444444,0.0177777777777778,0,0,0,0.00444444444444444,0.355555555555556,}} },
+            { "Y", new double[1, 8] { {0.355191256830601,0.306010928961749,0.0273224043715847,0,0,0,0.00546448087431694,0.306010928961749,}} },
+            { "Z", new double[1, 8] { {0.655172413793103,0.172413793103448,0.0129310344827586,0,0,0,0.00431034482758621,0.155172413793103,}} },
+        };
+
         int[] arahx;
         int[] arahy;
         
@@ -79,6 +112,11 @@ namespace WindowsFormsApplication1.Pustaka
         private bool isBackground(Color _c) {
             bool hasil = ((_c.R==background.R)&&(_c.G==background.G)&&(_c.B==background.B));
             return hasil;
+        }
+        
+        public void classifyAsAlphabet() {
+            this.calculateChainCodeDelta();
+            this.classifyByDatabase(AlphabetDatabase);
         }
         
         public void classifyAsNumber() {
@@ -193,12 +231,14 @@ namespace WindowsFormsApplication1.Pustaka
             String code = "";
             // == ARAH (8 tetangga) ==
             // 7 0 1
-            // 6 - 2
+            // 6 8 2
             // 5 4 3
             int a=4, k; // arah kiri (counter-clockwise) dari a, diwakili 0..7
             int ix = x;
             int iy = y;
             int count = 0;
+            List<Point> track = new List<Point>();
+            track.Add(new Point(ix, iy));
             do {
                 Debug.WriteLine(count+" "+(ix-1)+" "+(iy-1)+" | "+arahx[a]+" "+arahy[a]);
                 marking(ix-1, iy-1); // dikurangi 1 karena ada frame
@@ -226,16 +266,31 @@ namespace WindowsFormsApplication1.Pustaka
                     //count++;
                 }
                 //count = 0;
+                bool tracked = false;
                 a = 8;
+                int next_a_tracked = 8;
                 foreach(int _a in next_a) {
-                    if (_a != aopposite)
+                    int _ix = ix+arahx[_a];
+                    int _iy = iy+arahy[_a];
+                    bool tracked_now = false;
+                    foreach(Point p in track) {
+                        next_a_tracked = (p.X==_ix && p.Y==_iy) ? _a : next_a_tracked;
+                        tracked_now = (p.X==_ix && p.Y==_iy && _a!=aopposite);
+                        tracked = tracked||tracked_now;
+                    }
+                    if (_a!=aopposite && !tracked_now)
                         a = _a;
                 }/**/
-                if ((a==8)&&!(ix==x&&iy==y))
-                    a = aopposite;
+                if ((a == 8) && !(ix == x && iy == y)) {
+                    if (!tracked)
+                        a = aopposite;
+                    else
+                        a = next_a_tracked;
+                }
                 code += a;
                 ix = ix+arahx[a];
                 iy = iy+arahy[a];
+                track.Add(new Point(ix,iy));
                 count++;
             } while (!(ix==x&&iy==y)&&(count<2222));
             return code;

@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using WindowsFormsApplication1.Pustaka;
+using System.Diagnostics;
 
 namespace WindowsFormsApplication1.Window
 {
@@ -231,6 +232,45 @@ namespace WindowsFormsApplication1.Window
             fimage.Show();
         }
 
+        private void classifyAsAlphabetToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            XRecognizer r = new XRecognizer(Color.FromArgb(0, 0, 0), image);
+            r.classifyAsAlphabet();
+
+            String message = "";
+            message += ("Jumlah Bangun = " + r.codes.Count + "\n\n");
+            foreach (var label_classified in r.labels_classified.Select((x, i) => new { val = x, idx = i }))
+            {
+                message += ("Bangun #" + label_classified.idx + " dikenali sebagai \"" + label_classified.val + "\"\n");
+            }
+            message += "======================================================\n\n";
+            foreach (String code in r.codes)
+            {
+                message += ("Chaincode #" + r.codes.IndexOf(code) + " = " + code + "\n");
+            }
+            message += "======================================================\n\n";
+            foreach (String code in r.codes_delta)
+            {
+                message += ("Chaincode_delta #" + r.codes_delta.IndexOf(code) + " = " + code + "\n");
+            }
+            message += "======================================================\n\n";
+            foreach (double[] freq in r.freqs_code_delta)
+            {
+                message += ("Chaincode_delta #" + r.freqs_code_delta.IndexOf(freq) + " = \n\n");
+                for (int i = 0; i < freq.Length; i++)
+                    message += ("" + i + " = " + freq[i] + "\n");
+                message += "\n";
+            }
+            message += "======================================================\n\n";
+            
+            Form_image fimage = new Form_image(this.filepath, r.gambaredited);
+            fimage.MdiParent = this.MdiParent;
+            fimage.Show();
+            Form_chaincode fcc = new Form_chaincode("Chaincode " + this.filename, message);
+            fcc.MdiParent = this.MdiParent;
+            fcc.Show();
+        }
+
         private void classifyAsNumberToolStripMenuItem_Click(object sender, EventArgs e)
         {
             XRecognizer r = new XRecognizer(Color.FromArgb(0,0,0), image);
@@ -257,7 +297,7 @@ namespace WindowsFormsApplication1.Window
                 message += "\n";
             }
             message += "======================================================\n\n";
-
+            
             Form_image fimage = new Form_image(this.filepath, r.gambaredited);
             fimage.MdiParent = this.MdiParent;
             fimage.Show();
@@ -311,6 +351,30 @@ namespace WindowsFormsApplication1.Window
             timage = XImage.toBinary(timage, 96);
             timage = XSkeletonizer.zhangsuen(timage);
             Form_image fimage = new Form_image(this.filepath, timage);
+            fimage.MdiParent = this.MdiParent;
+            fimage.Show();
+        }
+
+        private void gradationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Bitmap timage = XImage.toGrayscale(image);
+            Form_image fimage = new Form_image(this.filepath, timage);
+            fimage.MdiParent = this.MdiParent;
+            fimage.Show();
+            Bitmap dimage = XImage.grad(timage);
+            Form_image fdimage = new Form_image(this.filepath, dimage);
+            fdimage.MdiParent = this.MdiParent;
+            fdimage.Show();
+            Bitmap d2image = XImage.grad2(dimage);
+            Form_image fd2image = new Form_image(this.filepath, d2image);
+            fd2image.MdiParent = this.MdiParent;
+            fd2image.Show();
+        }
+
+        private void rectangleMorphingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Bitmap mimage = XImage.RectangleMorph(image);
+            Form_image fimage = new Form_image(this.filepath, mimage);
             fimage.MdiParent = this.MdiParent;
             fimage.Show();
         }
